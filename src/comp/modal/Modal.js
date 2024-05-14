@@ -57,6 +57,7 @@ const Modal = ({ isOpen, onClose }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              className="emailinput"
             />
           </label>
           <label>
@@ -66,11 +67,14 @@ const Modal = ({ isOpen, onClose }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="emailinput"
             />
           </label>
-          <button type="submit">Submit</button>
+          <button className="submitbut" type="submit">
+            Submit
+          </button>
         </form>
-        {message && <p>{message}</p>}
+        {message && <p className="error_mes">{message}</p>}
       </div>
     </div>
   );

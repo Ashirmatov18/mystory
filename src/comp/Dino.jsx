@@ -16,6 +16,7 @@ import { Car, Bot, People, MadeIn, Logo } from "./SvgImages";
 import ScrollUpDown from "react-top-bottom-scroll";
 import Payment from "../images/online-pay-svgrepo-com.svg";
 import Modal from "./modal/Modal";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function Dino() {
   const [open, setOpen] = useState({});
@@ -67,8 +68,11 @@ export default function Dino() {
         <div className="nav">
           <div className="logo">
             <Logo />
-          </div>
-          <img src={Payment} alt="" className="payment" />
+          </div>{" "}
+          <Link to="/payment">
+            {" "}
+            <img src={Payment} alt="" className="payment" />
+          </Link>
         </div>
         <div className="discover">
           <div className="main_info">
@@ -123,7 +127,9 @@ export default function Dino() {
       <div className="demo">
         <img src={lycan} alt="" className="finger" />
         <div className="buttons">
-          <button className="order_bt" onClick={openModal}></button>
+          <button className="order_bt" onClick={openModal}>
+            Order Now
+          </button>
           <Modal isOpen={isModalOpen} onClose={closeModal} />
 
           {/* <button className="demo_bt">Demo...</button> */}
@@ -267,7 +273,7 @@ export default function Dino() {
           <h2>Subscribe For Updates</h2>
           <div className="sub_form">
             <input type="email" name="" id="" placeholder="E-mail" />
-            <button type="submit">KK</button>
+            <button type="submit">Send</button>
           </div>
         </div>
       </div>
