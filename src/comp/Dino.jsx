@@ -15,9 +15,20 @@ import bifg from "../images/bifg.svg";
 import { Car, Bot, People, MadeIn, Logo } from "./SvgImages";
 import ScrollUpDown from "react-top-bottom-scroll";
 import Payment from "../images/online-pay-svgrepo-com.svg";
+import Modal from "./modal/Modal";
 
 export default function Dino() {
   const [open, setOpen] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    console.log(isModalOpen);
+  };
 
   const infocompany = [
     {
@@ -112,12 +123,13 @@ export default function Dino() {
       <div className="demo">
         <img src={lycan} alt="" className="finger" />
         <div className="buttons">
-          <button className="order_bt">Order Now</button>
+          <button className="order_bt" onClick={openModal}></button>
+          <Modal isOpen={isModalOpen} onClose={closeModal} />
+
           {/* <button className="demo_bt">Demo...</button> */}
         </div>
         {/* <img src={aa} alt="" className="aa" /> */}
       </div>
-
       <div className="provide">
         <div className="ency">
           <img src={wolve} alt="" className="wolve" />
@@ -175,6 +187,7 @@ export default function Dino() {
           <h2>Drop Comment</h2>
         </div>
       </div>
+      {/* <button onClick={openModal}>Open Modal</button> */}
 
       <div className="child_dino">
         <div className="trexchild">
