@@ -703,7 +703,184 @@ cursor: pointer;
 }
 
 
+.footer_mobile{
+  height: 300px;
+  background-color: #000;
+  width: 100%;
+  color: orange;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+  display: none;
+}
+
+.footer_mobile h2{
+  cursor: pointer;
+}
+
+.footer_mobile h2:hover{
+  color: #bfd2ff;
+  border-bottom: 1px solid orange;
+}
+
+
+
+.footerdinomobile{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 220px;
+  display: none;
+}
+
+
+@media only screen and (max-width: 1100px){
+  .childrens{
+    padding-left: 0;
+    width: 40%;
+  }
+  .trexx{
+    width: 40%;
+  }
+
+  .bifg{
+    height: 70%;
+    margin-top: -500px;
+  }
+
+  .wolve{
+    margin-right: 0;
+  }
+
+  .ency_info{
+    width: 50%;
+  }
+  .road{
+    height: 20vh;
+  }
+
+  .branch{
+    margin-left: -30px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .wolve{
+    height: 30%;
+  }
+  .branch{
+    margin-left: -40px;
+  }
+
+  .bifg{
+    height: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main_info{
+    width: 45%;
+  }
+  .pic_disco{
+    width: 45%;
+    background-size: cover;
+    background-position:  center;
+  }
+
+  .info_page{
+    height: 100vh;
+  }
+  .svg_links{
+    margin-bottom: 50px;
+  }
+  .finger{
+    height: 100%;
+    margin-top: 0 !important;
+  }
+  .dino{
+    height: 60%;
+  }
+  .wolve{
+    height: 20%;
+  }
+  .ency{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ency_info{
+    width: 100%;
+  }
+  .ency_pic{
+    height: 450px;
+  }
+  .carou_info{
+    display: none;
+  }
+  .carousel{
+    justify-content: center;
+  }
+  .caro_img{
+    height: 320px;
+  }
+  .carou_main{
+    margin-left: 0;
+  }
+  .maininfocompany{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .information{
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .infobookimg{
+    height: 350px;
+  }
+  .argedino p{
+    width: 100%;
+    margin-left: 30px;
+  }
+  .argedino{
+    height: auto;
+  }
+  .swapimg{
+    width: 80%;
+  }
+  .bifg{
+    height: 40%;
+  }
+  .subscribe{
+    display: none;
+  }
+  .otherproducts{
+    justify-content: center;
+  }
+  .productphoto{
+    height: 390px;
+  }
+  .productinfo{
+    width: 50%;
+    height: 520px;
+  }
+  .pic_disco h1{
+    margin-right: 0;
+  }
+}
+
+
 @media only screen and (max-width: 600px) {
+  .footer_mobile{
+    display: flex;
+  }
+
+  .footerdinomobile{
+    display: block;
+  }
+
+  .footer_main{
+    display: none;
+  }
 
   .info_page{
     height: 100vh;
@@ -718,8 +895,11 @@ cursor: pointer;
   .pic_disco{
     background-position: center;
     background-size: cover;
-    width: auto;
+    width: 50%;
     height: 50vh;
+  }
+  .pic_disco h1{
+    font-size: 25px;
   }
   .instruction button{
     display: none;
@@ -761,7 +941,7 @@ cursor: pointer;
     margin-right: 5%;
     width: 80%;
     padding: 20px;
-    height: 120vh;
+    height: auto;
   }
   .carou_main{
     width: 100%;
@@ -868,6 +1048,16 @@ cursor: pointer;
 
   .productinfo{
     width: 100%;
+    margin-bottom: 120px;
+    height: 350px;
+  }
+  .productphoto{
+    height: 70%;
+    background-size: cover;
+  }
+
+  .productency{
+    font-size: 13px;
   }
 
   .subscribe{
@@ -892,7 +1082,6 @@ cursor: pointer;
 
   .info_page{
     height: auto;
-    background-size: contain;
   }
   .main_info{
     width: 60%;
@@ -935,7 +1124,6 @@ cursor: pointer;
   }
 
   .carousel{
-    height: 60vh;
     margin: auto;
     padding: 10px;
   }
@@ -963,5 +1151,20 @@ cursor: pointer;
   }
   .argedino{
     height: 300px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .instruction{
+    width: 100%;
+  }
+  .information{
+    padding-top: 0;
+  }
+  .products{
+    margin-top: 20px;
+  }
+  .caro_information{
+    font-size: 15px;
   }
 }

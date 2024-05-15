@@ -48,6 +48,13 @@ export default function Footer() {
         </div>
         <img src={sakura} alt="" className="sakura" />
       </div>
+
+      <div className="footer_mobile">
+        <div>
+          <Logo />
+        </div>
+        <h2>Home</h2>
+      </div>
     </>
   );
 }

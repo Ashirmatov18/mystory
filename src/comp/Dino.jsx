@@ -15,6 +15,7 @@ import bifg from "../images/bifg.svg";
 import { Car, Bot, People, MadeIn, Logo } from "./SvgImages";
 import ScrollUpDown from "react-top-bottom-scroll";
 import Payment from "../images/online-pay-svgrepo-com.svg";
+import dinofooter from "../images/1939441 1.svg";
 import Modal from "./modal/Modal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -276,6 +277,7 @@ export default function Dino() {
             <button type="submit">Send</button>
           </div>
         </div>
+        <img src={dinofooter} alt="" className="footerdinomobile" />
       </div>
 
       <Footer />
