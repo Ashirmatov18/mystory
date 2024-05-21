@@ -1116,56 +1116,100 @@ cursor: pointer;
 
 
 
-/* ImageUploader.css */
+/* Основные стили */
 .containerr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #1C4617;
 }
 
-.input-file {
+.input-file, .input-name, .generate-button {
   margin-bottom: 20px;
 }
 
-.image-preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.input-name {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
   margin-bottom: 20px;
 }
 
-.image-half {
-  width: 50%;
-  height: auto;
-  background-size: cover;
-  background-position: center;
-}
-
-.image-shadow {
-  filter: grayscale(100%) blur(2px);
+.generate-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .book-container {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/*** OPEN BOOK ***/
+.open-book {
+  background: #fff;
+  box-shadow: rgba(0,0,0,0.5) 0 1em 3em;
+  color: #000;
+  padding: 2em;
+}
+
+.book-spread {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
 .book-page {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  padding: 2em;
+  position: relative;
+  box-sizing: border-box;
 }
 
-.book-page img {
-  width: 100%;
-  height: auto;
+.page-content {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: justify;
 }
 
-.cover-page {
-  border: 2px solid #000;
-  margin-bottom: 40px;
+.page-number {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Адаптивные стили */
+@media only screen and (min-width: 50em) {
+  .open-book {
+    margin: 1em;
+    position: relative;
+  }
+
+  .open-book:before {
+    background-color: #8B4513;
+    border-radius: 0.25em;
+    bottom: -1em;
+    content: '';
+    left: -1em;
+    position: absolute;
+    right: -1em;
+    top: -1em;
+    z-index: -1;
+  }
+
+  .open-book:after {
+    background: linear-gradient(to right, transparent 0%,rgba(0,0,0,0.2) 46%,rgba(0,0,0,0.5) 49%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.5) 51%,rgba(0,0,0,0.2) 52%,transparent 100%);
+    bottom: -1em;
+    content: '';
+    left: 50%;
+    position: absolute;
+    top: -1em;
+    transform: translate(-50%,0);
+    width: 4em;
+    z-index: 1;
+  }
 }
