@@ -20,6 +20,35 @@ function ImageUploader() {
     setName(event.target.value);
   };
 
+  const uploadImage = async (img) => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("face", img);
+    const bookName = "Encyclopedia_girl_10_shaten";
+
+    try {
+      const response = await fetch(`/api/swap?book=${bookName}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response data:", data);
+        const pagesData = Object.keys(data).map(
+          (key) => `data:image/jpeg;base64,${data[key]}`
+        );
+        setPages(pagesData);
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleGenerateBook = async () => {
     if (!imageUrl || !name) {
       alert("Please upload an image and enter your name.");
@@ -28,42 +57,13 @@ function ImageUploader() {
 
     setLoading(true);
 
-    // Преобразуем URL изображения обратно в файл
     const response = await fetch(imageUrl);
     const blob = await response.blob();
     const img = new File([blob], "image.jpg", { type: blob.type });
 
-    const uploadImage = async (img) => {
-      setLoading(true);
-      const formData = new FormData();
-      formData.append("face", img);
-      const bookName = "Encyclopedia_girl_10_shaten"; // как указано в документации
+    await uploadImage(img);
 
-      try {
-        const response = await fetch(`/api/swap?book=${bookName}`, {
-          method: "POST",
-          body: formData,
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Response data:", data);
-          const pagesData = Object.keys(data).map(
-            (key) => `data:image/jpeg;base64,${data[key]}`
-          );
-          setPages(pagesData);
-        } else {
-          console.error("Error:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const handleGenerateBook = () => {
-      const originalBookText = `
+    const originalBookText = `
     Encyclopedia of Dinosaurs (for boys)
 
     The beginning of the journey
@@ -71,9 +71,6 @@ function ImageUploader() {
     Have you ever dreamed of traveling to the past to see how dinosaurs lived? A boy named ${name} didn't just dream about it—he believed it was possible.
     
     One evening, sitting in the cozy living room, ${name}, along with his parents, Dad, and Mom, watched a dinosaur program through an AR projector, which made the ancient giants almost real, allowing them to literally walk through their room. The air was filled with magic as they saw in three-dimensional projection how these mighty creatures once ruled the Earth.
-    Have you ever dreamed of travelling to the past to see how dinosaurs lived? A boy named ${name} didn't just dream about it—he believed it was possible.
-    
-    One evening, sitting in the cosy living room, ${name}, along with his parents, Dad, and Mom, watched a dinosaur program through an AR projector, which made the ancient giants almost real, allowing them to literally walk through their room. The air was filled with magic as they saw in three-dimensional projection how these mighty creatures once ruled the Earth.
     
     Suddenly, a scientist appeared on the screen, who talked about how the dinosaurs perished. ${name} was surprised and simultaneously saddened by the fate of these majestic beings. "How I wish I could see them alive!" he exclaimed when the program ended.
     
@@ -100,8 +97,7 @@ function ImageUploader() {
     
     Before boarding the probe, each tourist was given a watch with an artificial intelligence named Roxy, who promised to be a reliable guide, historian, and friend for the entire tour. "Hello, ${name}! You have such beautiful eyes, I'm almost sure they shine brighter than my screen," Roxy's cheerful voice sounded from the watch. ${name} couldn't help but smile, listening to the compliment from the artificial intelligence.
     
-    As he settled into his probe, which instantly became invisible, ${name} felt like he was part of something magical and incredible. The journey to the Triassic period had begun, and Roxy immediately got down to business, sharing fascinating facts about that time. "Did you know that the Triassic period lasted about 50 million years and was a time when it could rain for almost 2 million years straight? Can you imagine how many umbrellas you would have needed?" Roxy jokes, and ${name} laughed, imagining that scenario.
-    As he settled into his probe, which instantly became invisible, ${name} felt like he was part of something magical and incredible. The journey to the Triassic period had begun, and Roxy immediately got down to business, sharing fascinating facts about that time. "Did you know that the Triassic period lasted about 50 million years and was a time when it could rain for almost 2 million years straight? Can you imagine how many umbrellas you would have needed?" Roxy joked, and ${name} laughed, imagining that scenario.
+    As he settled into his probe, which instantly became invisible, ${name} felt like he was part of something magical and incredible. The journey to the Triassic period had begun, and Roxy immediately got down to business, sharing fascinating facts about that time. "Did you know that the Triassic period lasted about 50 million years and was a time when it would rain for almost 2 million years straight? Can you imagine how many umbrellas you would have needed?" Roxy jokes, and ${name} laughed, imagining that scenario.
     
     "The continent at that time was called Pangaea, and it was kind of like a party for all the creatures on the planet—all in one place!" Roxy continued, adding lightness to the story of ancient times.
     
@@ -138,13 +134,13 @@ function ImageUploader() {
     
     In front of them appeared a group of Brontosaurus, peacefully grazing among the trees. "And these giants," continued Roxy, "could easily peek into the second-floor window of your house without standing on tiptoes. And despite their huge size, their brains were the size of a nut. Who knows, maybe they just didn't want to bother with complex tasks!"
     
-    Continuing on their way, ${name}'s attention was drawn to a herd of Stegosaurus engaged in mating rituals. The male Stegosauruses impressively competed with each other, clashing their massive bodies and spiked tails. "Stegosaurus, in addition to their famous plates and tail spikes, used them to regulate body temperature and, of course, for protection. During the mating season, they became real knights in armour, fighting for the attention of females," Roxy explained, adding a historical fact to the captivating spectacle.
+    Continuing on their way, ${name}'s attention was drawn to a herd of Stegosaurus engaged in mating rituals. The male Stegosauruses impressively competed with each other, clashing their massive bodies and spiked tails. "Stegosaurus, in addition to their famous plates and tail spikes, used them to regulate body temperature and, of course, for protection. During the mating season, they became real knights in armor, fighting for the attention of females," Roxy explained, adding a historical fact to the captivating spectacle.
     
     Every dinosaur ${name} saw made him reflect on the complexity and diversity of the ancient world. He felt a deep admiration and wonder, realizing how much modern humans do not know about those who inhabited the Earth long before humans appeared. These feelings intertwined with a deep respect for nature and its creations, which existed millions of years ago, and with a gentle concern about the importance of preserving and protecting modern species so they do not become part of history like their ancient predecessors.
     
-    As they progressed through the lush forests of the Jurassic Period, ${name} and the other tourists continued to discover new and amazing types of dinosaurs. Suddenly, Apatosaurs appeared on their path, powerful and majestic creatures calmly grazing among the ancient trees.
+    As they progressed through the lush forests of the Jurassic Period, ${name} and the other tourists continued to discover new and amazing types of dinosaurs. Suddenly, Apatosaurus appeared on their path, powerful and majestic creatures calmly grazing among the ancient trees.
     
-    "Did you know that the Apatosaur, often confused with the Brontosaur, had a more robust and massive cervical vertebra? This made its neck incredibly strong, capable of bearing heavy loads while feeding on vegetation," Roxy shared, demonstrating her knowledge about this impressive creature.
+    "Did you know that the Apatosaurus, often confused with the Brontosaurus, had a more robust and massive cervical vertebra? This made its neck incredibly strong, capable of bearing heavy loads while feeding on vegetation," Roxy shared, demonstrating her knowledge about this impressive creature.
     
     After sharing an enlightening fact, Roxy decided to lighten the mood for ${name}. "I hope you're enjoying everything! Now, how about I give you a riddle?" she asked teasingly. ${name} gladly agreed.
     
@@ -156,15 +152,15 @@ function ImageUploader() {
     
     At one of the Astra Horizon stop points, where ${name} and the other tourists could take a break, Roxy used the pause to share a few more interesting facts about the Jurassic period. "You know, the Jurassic period was not only a time of dinosaurs but also the dawn of the first birds. It was a time of great changes not only on land but also in the sky!" Roxy's enthusiasm was infectious, and ${name} listened with captivation.
     
-    After a short rest, the group continued their journey. It wasn't long before they encountered a Kentrosaurus. "Kentrosaurus is known for its long spikes on its tail, which could reach two meters in length. They used them for protection against predators. Can you imagine, they were like real-life living fences!" Roxy joked, demonstrating her ability to make learning fun and memorable.
+    After a short rest, the group continued their journey. It wasn't long before they encountered a Kentrosaurus. "Kentrosaurus is known for its long spikes on its tail, which could reach two meters in length. They used them for protection against predators. Can you imagine, they were like real-life living fences!" Roxy jokes, demonstrating her ability to make learning fun and memorable.
     
-    Moving further, ${name} noticed a small and agile dinosaur—the Compsognathus. He curiously asked Roxy about it. "Compsognathus was one of the smallest dinosaurs, about the size of a modern domestic chicken. But don't think its size made it less interesting. It was very agile and could be a real formidable opponent for the insects of its time!" Roxy explained.
+    Moving further, ${name} noticed a small and agile dinosaur—the Compsognathus. He curiously asked Roxy about it. "Compsognathus was one of the smallest dinosaurs, about the size of a modern domestic chicken. But I don't think its size made it less interesting. It was very agile and could be a real formidable opponent for the insects of its time!" Roxy explained.
     
     At that moment, an Archaeopteryx flew overhead with prey in its beak. ${name} was momentarily breathless with surprise, feeling a slight anxiety. Roxy quickly reassured him, saying, "Don't worry, ${name}, our probe is completely invisible and very secure. The Archaeopteryx doesn't even know we're here!"
     
     "By the way, Archaeopteryx is considered one of the first birds. It was a real link between dinosaurs and birds. It could fly, but its flight was not as graceful as that of modern birds. It was probably more like gliding between trees," Roxy added, making the moment even more educational.
     
-    ${name} felt a mix of excitement and admiration as he delved deeper into the world of ancient creatures. Each new fact and every new creature added colour to this amazing journey through time. He felt his horizons expanding, and this filled him with enthusiasm to continue exploring this mysterious ancient world.
+    ${name} felt a mix of excitement and admiration as he delved deeper into the world of ancient creatures. Each new fact and every new creature added color to this amazing journey through time. He felt his horizons expanding, and this filled him with enthusiasm to continue exploring this mysterious ancient world.
     
     
     The Sunset of the Cretaceous Period
@@ -183,7 +179,7 @@ function ImageUploader() {
     
     Breathing a sigh of relief, ${name} thanked Roxy for her help. "You're welcome! Always glad to help. By the way, your case has already been reported to the rescue service," Roxy affirmed. Soon a rescue team arrived from the base, repaired the probe, and apologized for the incident.
     
-    "Good job, ${name}, you handled that bravely!" Roxy praised him, then continued to share fascinating facts about the Tyrannosaurus: "Did you know that it also had an incredibly sharp sense of smell—able to detect prey several kilometres away? And despite its small arms, it was one of the most dangerous predators of its time!"
+    "Good job, ${name}, you handled that bravely!" Roxy praised him, then continued to share fascinating facts about the Tyrannosaurus: "Did you know that it also had an incredibly sharp sense of smell—able to detect prey several kilometers away? And despite its small arms, it was one of the most dangerous predators of its time!"
     
     Feeling relieved and continuing to listen to Roxy, ${name} smiled, experiencing deep satisfaction from being able to get so close to the ancient inhabitants of Earth, and at the same time, he felt gratitude for modern technologies that allowed him to experience this in complete safety.
     
@@ -191,26 +187,26 @@ function ImageUploader() {
     
     "Did you know," Roxy began, joining in the laughter, "that Triceratops used their huge horns not only for protection from predators but also for... fashion shows? At least they would have if dinosaurs had their own social network. 'Check out my new accessories!' a Triceratops would say, posting a selfie."
     
-    Along the way, they spotted Velociraptors lying in ambush. "Velociraptors were smart and agile hunters. And you know what's interesting? They were actually covered in feathers, like birds. So, if they participated in a costume contest, they would definitely take first place for the most stylish 'dino-cloak'!" Roxy joked.
+    Along the way, they spotted Velociraptors lying in ambush. "Velociraptors were smart and agile hunters. And you know what's interesting? They were actually covered in feathers, like birds. So, if they participated in a costume contest, they would definitely take first place for the most stylish 'dino-cloak'!" Roxy jokes.
     
     ${name} responded cheerfully: "So, Velociraptors were the first fashionistas of the Mesozoic era? I can imagine them on the runway!"
     
     Arriving at the coast, they saw a newly hatched Spinosaurus baby standing next to its nest. Around were signs of other dinosaurs trying to steal the eggs. "Egg theft was not uncommon and significantly affected the population of some species. But Spinosaurus mothers are very caring and try to protect their offspring. It was a real 'dinosaur daycare'!" Roxy explained.
     
     Next, upon meeting an Ankylosaurus, Roxy shared another amazing fact:
-    "Ankylosaurs were real tanks among dinosaurs. Their bodies were covered in armour, and they had powerful bony clubs on their tails. The climate at the time influenced whether a male or female would hatch from the eggs. Warmer conditions tipped the scales in favour of one sex, which undoubtedly affected the demographics. So, you could say the weather decided who would 'lead the parade' in the dinosaur world."
+    "Ankylosaurs were real tanks among dinosaurs. Their bodies were covered in armor, and they had powerful bony clubs on their tails. The climate at the time influenced whether a male or female would hatch from the eggs. Warmer conditions tipped the scales in favor of one sex, which undoubtedly affected the demographics. So, you could say the weather decided who would 'lead the parade' in the dinosaur world."
     
     ${name} was amazed by the information and couldn't stop marveling at how complex and diverse the ancient world was.
     
-    At the next stop at one of the Astra Horizon bases, ${name} and his group of tourists paused to grab a bite to eat. The base was built in a style reminiscent of modern research stations but with additional elements to protect against dinosaurs. Large glass panels offered a panoramic view of the surrounding Cretaceous landscape, while the interior space of the base was filled with soft light and modern technology, making the stop cosy and safe.
+    At the next stop at one of the Astra Horizon bases, ${name} and his group of tourists paused to grab a bite to eat. The base was built in a style reminiscent of modern research stations but with additional elements to protect against dinosaurs. Large glass panels offered a panoramic view of the surrounding Cretaceous landscape, while the interior space of the base was filled with soft light and modern technology, making the stop cozy and safe.
     
     While eating, ${name} reflected on what he had seen. Roxy used this moment to share additional facts about the Cretaceous period. "You know, ${name}, many believe that a meteorite was the sole cause of the dinosaurs' extinction, but it was more likely a combination of factors, including climate changes and volcanic activity. Plus, evolution didn’t stop at dinosaurs; many of them eventually evolved into modern birds!"
     
     After refueling, they continued on their way and soon saw a Pteranodon soaring in the sky. Roxy shared a fun fact: "Pteranodons weren't dinosaurs, but flying reptiles. And you know, they didn't have feathers, but they could fold their wings like an umbrella. Imagine how they would get tangled up in strong winds!"
     
-    ${name} posed an interesting question: "If Pteranodons were alive today, could they learn to avoid aeroplanes?" Roxy paused for a moment before answering: "That would be an amazing sight, but given their size and manoeuvrability, I think they would quickly adapt to our world!"
+    ${name} posed an interesting question: "If Pteranodons were alive today, could they learn to avoid airplanes?" Roxy paused for a moment before answering: "That would be an amazing sight, but given their size and maneuverability, I think they would quickly adapt to our world!"
     
-    Continuing their journey, the group saw a Carcharodontosaurus in the midst of hunting. "Let's shorten its name to 'Carchi' to make it easier to say," suggested Roxy. "Carchi, like its full name, means 'shark-toothed lizard,' which gives us an idea of its sharp teeth capable of slicing through even the toughest prey!"
+    Continuing their journey, the group saw a Carcharodontosaurus in the midst of hunting. "Let's shorten its name to 'Carchi' to make it easier to say," suggested Roxy. "Carchi, like it's full name, means 'shark-toothed lizard,' which gives us an idea of its sharp teeth capable of slicing through even the toughest prey!"
     
     Their attention was interrupted by a Parasaurolophus's call. "What would a Parasaurolophus say if it could talk?" ${name} jokingly asked. "It would definitely ask to turn up the volume of the music!" Roxy quipped. "Their loud calls could serve as alarm signals and ways to communicate over long distances, like an ancient dinosaur 'telephone'!"
     
@@ -237,105 +233,106 @@ function ImageUploader() {
     
     When they arrived home, a message from Astra Horizon was waiting in the family's inbox. Dad opened it, and a three-dimensional message emerged from the tablet, asking for a review of the tour. ${name} happily wrote his review, sharing his impressions and gratitude. As soon as the review was sent, a new message appeared:
     
-    "Thank you for your review! If you enjoyed travelling to the past, perhaps you'd like to embark on a journey to the stars... our new space tour is now available!"
+    "Thank you for your review! If you enjoyed traveling to the past, perhaps you'd like to embark on a journey to the stars... our new space tour is now available!"
     
-        `;
+    
+    `;
 
-      const bookPages = splitTextIntoPages(originalBookText, 9);
-      setBookText(bookPages);
-    };
+    const bookPages = splitTextIntoPages(originalBookText, 9);
+    setBookText(bookPages);
+  };
 
-    const splitTextIntoPages = (text, numPages) => {
-      const words = text.split(" ");
-      const wordsPerPage = Math.ceil(words.length / numPages);
-      const pages = [];
+  const splitTextIntoPages = (text, numPages) => {
+    const words = text.split(" ");
+    const wordsPerPage = Math.ceil(words.length / numPages);
+    const pages = [];
 
-      for (let i = 0; i < numPages; i++) {
-        pages.push(
-          words.slice(i * wordsPerPage, (i + 1) * wordsPerPage).join(" ")
-        );
-      }
+    for (let i = 0; i < numPages; i++) {
+      pages.push(
+        words.slice(i * wordsPerPage, (i + 1) * wordsPerPage).join(" ")
+      );
+    }
 
-      return pages;
-    };
+    return pages;
+  };
 
-    const renderBook = () => {
-      const bookSpreads = [];
-      for (let i = 0; i < bookText.length; i += 2) {
-        bookSpreads.push(
-          <div key={i} className="book-container">
-            <section className="open-book">
-              <div className="book-spread">
+  const renderBook = () => {
+    const bookSpreads = [];
+    for (let i = 0; i < bookText.length; i += 2) {
+      bookSpreads.push(
+        <div key={i} className="book-container">
+          <section className="open-book">
+            <div className="book-spread">
+              <div className="book-page">
+                <div className="page-content">
+                  <p>{bookText[i]}</p>
+                </div>
+                <div className="page-number">{i + 1}</div>
+              </div>
+              {i + 1 < bookText.length && (
                 <div className="book-page">
                   <div className="page-content">
-                    <p>{bookText[i]}</p>
+                    <p>{bookText[i + 1]}</p>
                   </div>
-                  <div className="page-number">{i + 1}</div>
+                  <div className="page-number">{i + 2}</div>
                 </div>
-                {i + 1 < bookText.length && (
-                  <div className="book-page">
-                    <div className="page-content">
-                      <p>{bookText[i + 1]}</p>
-                    </div>
-                    <div className="page-number">{i + 2}</div>
-                  </div>
-                )}
-              </div>
-            </section>
-          </div>
-        );
-      }
-      return bookSpreads;
-    };
-
-    return (
-      <div className="containerr">
-        <input
-          type="file"
-          className="input-file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        <input
-          type="text"
-          placeholder="Enter your name"
-          value={name}
-          onChange={handleNameChange}
-          className="input-name"
-        />
-        <button onClick={handleGenerateBook} className="generate-button">
-          Generate Book
-        </button>
-        {loading && <p>Loading...</p>}
-        {pages.length > 0 ? (
-          <div className="book-container">
-            {pages.map((page, index) => (
-              <div
-                key={index}
-                className={`book-page ${index === 0 ? "cover-page" : ""}`}
-              >
-                <img src={page} alt={`Page ${index + 1}`} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          imageUrl &&
-          !loading && (
-            <div className="image-preview">
-              <div
-                className="image-half"
-                style={{ backgroundImage: `url(${imageUrl})` }}
-              ></div>
-              <div
-                className="image-half image-shadow"
-                style={{ backgroundImage: `url(${imageUrl})` }}
-              ></div>
+              )}
             </div>
-          )
-        )}
-        {bookText.length > 0 && renderBook()}
-      </div>
-    );
+          </section>
+        </div>
+      );
+    }
+    return bookSpreads;
   };
+
+  return (
+    <div className="containerr">
+      <input
+        type="file"
+        className="input-file"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={handleNameChange}
+        className="input-name"
+      />
+      <button onClick={handleGenerateBook} className="generate-button">
+        Generate Book
+      </button>
+      {loading && <p>Loading...</p>}
+      {pages.length > 0 ? (
+        <div className="book-container">
+          {pages.map((page, index) => (
+            <div
+              key={index}
+              className={`book-page ${index === 0 ? "cover-page" : ""}`}
+            >
+              <img src={page} alt={`Page ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        imageUrl &&
+        !loading && (
+          <div className="image-preview">
+            <div
+              className="image-half"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            ></div>
+            <div
+              className="image-half image-shadow"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            ></div>
+          </div>
+        )
+      )}
+      {bookText.length > 0 && renderBook()}
+    </div>
+  );
 }
+
 export default ImageUploader;
