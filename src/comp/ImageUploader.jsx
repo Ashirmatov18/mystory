@@ -7,12 +7,13 @@ function ImageUploader() {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [bookText, setBookText] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleImageChange = async (event) => {
+  const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const img = event.target.files[0];
       setImageUrl(URL.createObjectURL(img));
-      await uploadImage(img);
+      setSelectedImage(img);
     }
   };
 
@@ -53,18 +54,14 @@ function ImageUploader() {
   };
 
   const handleGenerateBook = async () => {
-    if (!imageUrl || !name) {
+    if (!selectedImage || !name) {
       alert("Please upload an image and enter your name.");
       return;
     }
 
     setLoading(true);
 
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    const img = new File([blob], "image.jpg", { type: blob.type });
-
-    await uploadImage(img);
+    await uploadImage(selectedImage);
 
     const originalBookText = `
 test    
