@@ -27,13 +27,10 @@ function ImageUploader() {
     const bookName = "encyclopedia_dino_girl_6_shaten_white_1_ru";
 
     try {
-      const response = await fetch(
-        `https://v5-v6ovqwi4ya-el.a.run.app/swap?book=${bookName}`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`/api/proxy/swap?book=${bookName}`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
