@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import "./CheckoutForm.css";
 
 const CheckoutForm = () => {
@@ -14,7 +18,7 @@ const CheckoutForm = () => {
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement),
+      card: elements.getElement(PaymentElement),
     });
 
     if (error) {
@@ -27,10 +31,15 @@ const CheckoutForm = () => {
     }
   };
 
+  const paymentElementOptions = {
+    layout: "tabs",
+    paymentMethodOrder: ["card"],
+  };
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="input-container">
-        <CardElement />
+        <PaymentElement id="payment-element" options={paymentElementOptions} />
       </div>
       <button
         className="button"
