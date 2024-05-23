@@ -1,7 +1,7 @@
 {
     "headers": [
       {
-        "source": "/api/(.*)",
+        "source": "https://v5-v6ovqwi4ya-el.a.run.app/swap?book=encyclopedia_dino_girl_6_shaten_white_1_ru",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "*" },
