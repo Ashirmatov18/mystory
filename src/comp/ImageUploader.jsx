@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "../App.css";
+import { getBookLinks, getBookText } from "../booklinks";
 
 function ImageUploader() {
   const [imageUrl, setImageUrl] = useState(null);
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [bookText, setBookText] = useState([]);
+  const [userName, setUserName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [language, setLanguage] = useState("ru");
+  const [gender, setGender] = useState("girl");
 
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -18,7 +20,15 @@ function ImageUploader() {
   };
 
   const handleNameChange = (event) => {
-    setName(event.target.value);
+    setUserName(event.target.value);
+  };
+
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+  };
+
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
   };
 
   const uploadImage = async (img) => {
@@ -54,7 +64,7 @@ function ImageUploader() {
   };
 
   const handleGenerateBook = async () => {
-    if (!selectedImage || !name) {
+    if (!selectedImage || !userName) {
       alert("Please upload an image and enter your name.");
       return;
     }
@@ -63,56 +73,17 @@ function ImageUploader() {
 
     await uploadImage(selectedImage);
 
-    const originalBookText = `
-test    
-    `;
+    const imageLinks = getBookLinks(gender, language);
+    setPages((prevPages) => [...prevPages, ...imageLinks]);
 
-    const bookPages = splitTextIntoPages(originalBookText, 9);
-    setBookText(bookPages);
+    setLoading(false);
   };
 
-  const splitTextIntoPages = (text, numPages) => {
-    const words = text.split(" ");
-    const wordsPerPage = Math.ceil(words.length / numPages);
-    const pages = [];
-
-    for (let i = 0; i < numPages; i++) {
-      pages.push(
-        words.slice(i * wordsPerPage, (i + 1) * wordsPerPage).join(" ")
-      );
-    }
-
-    return pages;
+  const getBookTextWithUserName = (pageText) => {
+    return pageText.replace(/{name}/g, userName);
   };
 
-  const renderBook = () => {
-    const bookSpreads = [];
-    for (let i = 0; i < bookText.length; i += 2) {
-      bookSpreads.push(
-        <div key={i} className="book-container">
-          <section className="open-book">
-            <div className="book-spread">
-              <div className="book-page">
-                <div className="page-content">
-                  <p>{bookText[i]}</p>
-                </div>
-                <div className="page-number">{i + 1}</div>
-              </div>
-              {i + 1 < bookText.length && (
-                <div className="book-page">
-                  <div className="page-content">
-                    <p>{bookText[i + 1]}</p>
-                  </div>
-                  <div className="page-number">{i + 2}</div>
-                </div>
-              )}
-            </div>
-          </section>
-        </div>
-      );
-    }
-    return bookSpreads;
-  };
+  const bookText = getBookText(gender, language);
 
   return (
     <div className="containerr">
@@ -125,41 +96,172 @@ test
       <input
         type="text"
         placeholder="Enter your name"
-        value={name}
+        value={userName}
         onChange={handleNameChange}
         className="input-name"
       />
+      <select value={language} onChange={handleLanguageChange}>
+        <option value="ru">Russian</option>
+        <option value="en">English</option>
+      </select>
+      <select value={gender} onChange={handleGenderChange}>
+        <option value="boy">Boy</option>
+        <option value="girl">Girl</option>
+      </select>
       <button onClick={handleGenerateBook} className="generate-button">
         Generate Book
       </button>
       {loading && <p>Loading...</p>}
-      {pages.length > 0 ? (
-        <div className="book-container">
-          {pages.map((page, index) => (
-            <div
-              key={index}
-              className={`book-page ${index === 0 ? "cover-page" : ""}`}
-            >
-              <img src={page} alt={`Page ${index + 1}`} />
-            </div>
-          ))}
+      {imageUrl && !loading && (
+        <div className="image-preview">
+          <div
+            className="image-half"
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          ></div>
+          <div
+            className="image-half image-shadow"
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          ></div>
         </div>
-      ) : (
-        imageUrl &&
-        !loading && (
-          <div className="image-preview">
-            <div
-              className="image-half"
-              style={{ backgroundImage: `url(${imageUrl})` }}
-            ></div>
-            <div
-              className="image-half image-shadow"
-              style={{ backgroundImage: `url(${imageUrl})` }}
-            ></div>
-          </div>
-        )
       )}
-      {bookText.length > 0 && renderBook()}
+      {pages.length >= 10 && (
+        <>
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page full-page-image">
+                  <img src={pages[0]} alt="Page 1" />
+                </div>
+                <div className="book-page full-page-image">
+                  <img src={pages[3]} alt="Page 2" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page">
+                  <div className="page-content">
+                    <h2 className="title">The beginning of the journey</h2>
+                    {getBookTextWithUserName(bookText.page3)}
+                  </div>
+                </div>
+                <div className="book-page">
+                  <div className="half-page">
+                    <img
+                      src={pages[4]}
+                      alt="Page 4"
+                      className="half-page-image secondimage"
+                    />
+                    <div className="half-page-text fourthtext">
+                      {getBookTextWithUserName(bookText.page4)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page">
+                  <div className="half-page">
+                    <div className="half-page-text">
+                      {getBookTextWithUserName(bookText.page5)}
+                    </div>
+                    <img
+                      src={pages[5]}
+                      alt="Page 5"
+                      className="half-page-image fiveimg"
+                    />
+                  </div>
+                </div>
+                <div className="book-page">
+                  <div className="half-page">
+                    <div className="half-page-text">
+                      {getBookTextWithUserName(bookText.page6)}
+                    </div>
+                    <img
+                      src={pages[1]}
+                      alt="Page 6"
+                      className="half-page-image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page">
+                  <div className="half-page">
+                    <div className="half-page-text-30">
+                      {getBookTextWithUserName(bookText.page7)}
+                    </div>
+                    <img
+                      src={pages[6]}
+                      alt="Page 7"
+                      className="large-page-image"
+                    />
+                  </div>
+                </div>
+                <div className="book-page">
+                  <div className="half-page">
+                    <div className="half-page-text">
+                      {getBookTextWithUserName(bookText.page8)}
+                    </div>
+                    <img
+                      src={pages[7]}
+                      alt="Page 8"
+                      className="half-page-image sevenimg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page full-page-image">
+                  <img src={pages[8]} alt="Page 9" />
+                </div>
+                <div className="book-page full-page-image">
+                  <img src={pages[9]} alt="Page 10" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div className="book-container">
+            <section className="open-book">
+              <div className="book-spread">
+                <div className="book-page">
+                  <div className="half-page">
+                    <div className="half-page-text">
+                      {getBookTextWithUserName(bookText.page11)}
+                    </div>
+                    <img
+                      src={pages[2]}
+                      alt="Page 11"
+                      className="half-page-image elevenimg"
+                    />
+                  </div>
+                </div>
+                <div className="book-page full-page-image">
+                  <img src={pages[10]} alt="Page 12" />
+                </div>
+              </div>
+            </section>
+          </div>
+        </>
+      )}
     </div>
   );
 }
