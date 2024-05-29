@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import { getBookLinks, getBookText } from "../booklinks";
+import loadingif from "../images/gif.gif";
 
 function ImageUploader() {
   const [imageUrl, setImageUrl] = useState(null);
@@ -20,7 +21,9 @@ function ImageUploader() {
   };
 
   const handleNameChange = (event) => {
-    setUserName(event.target.value);
+    const formattedName =
+      event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
+    setUserName(formattedName);
   };
 
   const handleLanguageChange = (event) => {
@@ -79,11 +82,23 @@ function ImageUploader() {
     setLoading(false);
   };
 
-  const getBookTextWithUserName = (pageText) => {
-    return pageText.replace(/{name}/g, userName);
-  };
-
   const bookText = getBookText(gender, language);
+
+  const getBookTextWithUserName = (pageText) => {
+    if (!pageText) return null;
+    const formattedText = pageText.replace(
+      /{name}/g,
+      `${userName.charAt(0).toUpperCase() + userName.slice(1)}`
+    );
+    return formattedText
+      .split("<!--split-->")
+      .map((paragraph, index, array) => (
+        <React.Fragment key={index}>
+          <p>{paragraph.trim()}</p>
+          {index < array.length - 1 && <br />}
+        </React.Fragment>
+      ));
+  };
 
   return (
     <div className="containerr">
@@ -111,20 +126,11 @@ function ImageUploader() {
       <button onClick={handleGenerateBook} className="generate-button">
         Generate Book
       </button>
-      {loading && <p>Loading...</p>}
-      {imageUrl && !loading && (
-        <div className="image-preview">
-          <div
-            className="image-half"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-          ></div>
-          <div
-            className="image-half image-shadow"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-          ></div>
-        </div>
+      {loading && (
+        <img src={loadingif} alt="Loading..." className="loading-gif" />
       )}
-      {pages.length >= 10 && (
+
+      {pages.length > 0 && (
         <>
           <div className="book-container">
             <section className="open-book">
@@ -138,7 +144,6 @@ function ImageUploader() {
               </div>
             </section>
           </div>
-
           <div className="book-container">
             <section className="open-book">
               <div className="book-spread">
@@ -163,7 +168,6 @@ function ImageUploader() {
               </div>
             </section>
           </div>
-
           <div className="book-container">
             <section className="open-book">
               <div className="book-spread">
@@ -194,7 +198,6 @@ function ImageUploader() {
               </div>
             </section>
           </div>
-
           <div className="book-container">
             <section className="open-book">
               <div className="book-spread">
@@ -225,7 +228,6 @@ function ImageUploader() {
               </div>
             </section>
           </div>
-
           <div className="book-container">
             <section className="open-book">
               <div className="book-spread">
@@ -238,7 +240,6 @@ function ImageUploader() {
               </div>
             </section>
           </div>
-
           <div className="book-container">
             <section className="open-book">
               <div className="book-spread">

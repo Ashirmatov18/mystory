@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
 .main{
   /* padding: 40px; */
   margin: 0 auto;
@@ -1146,24 +1148,24 @@ cursor: pointer;
   align-items: center;
   margin-bottom: 40px;
   width: 80%;
-  font-size: 13px;
-  line-height: 2.2;
+  font-size: 14px;
+  /* line-height: 2.2; */
   text-align: justify;
+  font-family: "EB Garamond", serif;
 }
 
-.sevenimg{
-  height: 400px !important; 
-  /* margin-top: 70px; */
-}
-
-.elevenimg{
+.sevenimg {
   height: 400px !important;
 }
 
-.fourthtext{
+.elevenimg {
+  height: 400px !important;
+}
+
+.fourthtext {
   position: absolute;
   bottom: 0;
-  padding-bottom: 5em !important;
+  padding-bottom: 12em !important;
 }
 
 .cover-page {
@@ -1177,9 +1179,8 @@ cursor: pointer;
 /*** OPEN BOOK ***/
 .open-book {
   background: #fff;
-  box-shadow: rgba(0,0,0,0.5) 0 1em 3em;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 1em 3em;
   color: #000;
-  /* padding: 2em; */
   height: 850px;
 }
 
@@ -1194,16 +1195,20 @@ cursor: pointer;
   padding: 0;
   position: relative;
   box-sizing: border-box;
-  /* height: 1000px;  */
 }
 
 .page-content {
-  font-size: 13px; 
-  line-height: 2.2;
+  font-size: 14px;
+  /* line-height: 2.2; */
   text-align: justify;
-  height: 100%; 
-  overflow: hidden; 
+  height: 100%;
+  overflow: hidden;
   padding: 5em;
+}
+
+.loading-gif{
+  height: 300px;
+  width: 300px;
 }
 
 .page-number {
@@ -1216,8 +1221,11 @@ cursor: pointer;
 
 .book-page img {
   width: 100%;
-  /* height: auto; */
-  box-shadow: rgba(0,0,0,0.3) 0 4px 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 8px;
+}
+
+.book-page p {
+  margin: 0.2em 0;
 }
 
 .cover-page img {
@@ -1238,20 +1246,19 @@ cursor: pointer;
   background-size: cover;
   background-position: center;
   border: 1px solid #ddd;
-  box-shadow: rgba(0,0,0,0.3) 0 4px 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 8px;
 }
 
 .image-shadow {
-  box-shadow: rgba(0,0,0,0.5) 0 4px 8px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 4px 8px;
 }
 
 .full-page-image {
-  /* width: 100%; */
   height: 100%;
   padding: 0;
 }
 
-.full-page-image img{
+.full-page-image img {
   height: 100%;
 }
 
@@ -1262,13 +1269,11 @@ cursor: pointer;
 
 .half-page-image {
   width: 100%;
-  /* height: 50%; */
   position: absolute;
   bottom: 0;
 }
 
 .half-page-text {
-  /* height: 50%; */
   padding-top: 10px;
   padding: 5em;
   padding-bottom: 0;
@@ -1293,13 +1298,13 @@ cursor: pointer;
   font-size: 1.2em;
 }
 
-.secondimage{
+.secondimage {
   position: absolute;
   top: 0 !important;
 }
 
-.fiveimg{
-  height: 400px;
+.fiveimg {
+  height: 450px;
 }
 
 /* Адаптивные стили */
@@ -1313,7 +1318,7 @@ cursor: pointer;
     background-color: #8B4513;
     border-radius: 0.25em;
     bottom: -1em;
-    content: '';
+    content: "";
     left: -1em;
     position: absolute;
     right: -1em;
@@ -1322,14 +1327,72 @@ cursor: pointer;
   }
 
   .open-book:after {
-    background: linear-gradient(to right, transparent 0%,rgba(0,0,0,0.2) 46%,rgba(0,0,0,0.5) 49%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.5) 51%,rgba(0,0,0,0.2) 52%,transparent 100%);
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.2) 46%,
+      rgba(0, 0, 0, 0.5) 49%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.5) 51%,
+      rgba(0, 0, 0, 0.2) 52%,
+      transparent 100%
+    );
     bottom: -1em;
-    content: '';
+    content: "";
     left: 50%;
     position: absolute;
     top: -1em;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     width: 4em;
     z-index: 1;
   }
 }
+
+
+@media only screen  and (max-width:414px ) {
+  .open-book{
+    /* height: 650px; */
+    box-shadow: none;
+  }
+
+  .book-spread{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-page{
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 1em 3em;
+  }
+
+  .book-container{
+    width: 90%;
+    /* margin-bottom: 400px; */
+    margin-top: 300px;
+    font-size: 10px;
+  }
+  .page-content{
+    padding: 2em;
+    font-size: 10px;
+  }
+  .half-page-text{
+    padding: 2em;
+    font-size: 10px;
+  }
+  .secondimage{
+    position: relative;
+  }
+  .fourthtext{
+    position: relative;
+  }
+  .half-page-image{
+    position: relative;
+  }
+  .large-page-image{
+    position: relative;
+    height: 200px;
+  }
+}
+
