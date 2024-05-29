@@ -6,7 +6,7 @@ import "./StripeCheckout.css";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const StripeCheckout = () => {
+const StripeCheckout = ({ clientData, handleNext, handleBack }) => {
   const appearance = {
     theme: "flat",
     labels: "floating",
@@ -22,7 +22,11 @@ const StripeCheckout = () => {
     <div className="wrapper">
       <div className="container">
         <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm />
+          <CheckoutForm
+            clientData={clientData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
         </Elements>
       </div>
     </div>
