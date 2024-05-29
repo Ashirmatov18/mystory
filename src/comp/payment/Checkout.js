@@ -21,7 +21,7 @@ import AddressForm from "./AddressForm";
 import getCheckoutTheme from "./getCheckoutTheme";
 import Info from "./Info";
 import InfoMobile from "./InfoMobile";
-import { Logo } from "../SvgImages";
+import { LogoBlack } from "../SvgImages";
 import StripeCheckout from "./StripeCheckout";
 
 const steps = ["Shipping address", "Payment details"];
@@ -92,7 +92,7 @@ export default function Checkout() {
               href="/"
               sx={{ ml: "-8px" }}
             >
-              Back to <Logo />
+              Back to <LogoBlack />
             </Button>
           </Box>
           <Box
@@ -148,7 +148,7 @@ export default function Checkout() {
                 sx={{ alignSelf: "start" }}
               >
                 Back to
-                <Logo />
+                <LogoBlack />
               </Button>
             </Box>
             <Box

@@ -1,130 +1,127 @@
-.main{
-    background-color: #0E4905;
-    /* padding: 1em; */
-    padding-top: 100px;
+.main {
+  background-color: #0e4905;
+  /* padding: 1em; */
 }
 
-.first_block_review{
-    border: 1px solid white;
-    width: 90%;
-    margin: 0 auto;
-    height: 800px;
-    border-radius: 10px;
-    position: relative;
-    text-align: center;
-    padding: 10px;
-    color: #fff;
+.first_block_review {
+  border: 1px solid white;
+  width: 90%;
+  margin: 0 auto;
+  height: 800px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
 }
 
-.photo_review{
-    display: flex;
-    justify-content: space-between;
+.photo_review {
+  display: flex;
+  justify-content: space-between;
 }
 
-.comments{
-    background-color: #fff;
-    color: black;
-    width: 25%;
-    margin-right: 10px;
-
+.comments {
+  background-color: #fff;
+  color: black;
+  width: 25%;
+  margin-right: 10px;
 }
 
-.comments:nth-child(2){
-    background-color: red;
+.comments:nth-child(2) {
+  background-color: red;
 }
 
-.stars{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    border-bottom: 1px solid #fff;
-    margin-bottom: 50px;
+.stars {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 50px;
 }
 
-.show_more{
-    margin: 10px auto;
-    height: 40px;
-    background: transparent;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    width: 200px;
+.show_more {
+  margin: 10px auto;
+  height: 40px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  width: 200px;
 }
 
-.video_block_review{
-    border: 1px solid white;
-    width: 90%;
-    margin: 100px auto;
-    height: 800px;
-    border-radius: 10px;
-    position: relative;
-    text-align: center;
-    padding: 10px;
-    color: #fff;
+.video_block_review {
+  border: 1px solid white;
+  width: 90%;
+  margin: 100px auto;
+  height: 800px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
 }
 
-.info_us{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 400px;
+.info_us {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 400px;
 }
 
-.book_info{
-    background-color: #0D691C;
-    width: 40%;
-    padding: 2em;
-
+.book_info {
+  background-color: #0d691c;
+  width: 40%;
+  padding: 2em;
 }
 
-.trusted{
-    background-color: #333030;
-    padding: 2em;
+.trusted {
+  background-color: #333030;
+  padding: 2em;
 }
 
-.trusted h5{
-    color: #C6C4C4;
-    font-size: 25px;
-    width: 50%;
+.trusted h5 {
+  color: #c6c4c4;
+  font-size: 25px;
+  width: 50%;
 }
 
-.deliver_info{
-    text-align: center;
+.deliver_info {
+  text-align: center;
 }
-.deliver_info h2{
-    margin-bottom: 90px;
-}
-
-.info_about_creation{
-    display: flex;
-    justify-content: center;
-    /* width: 40%; */
-    align-items: center;
-    margin: 20px auto;
+.deliver_info h2 {
+  margin-bottom: 90px;
 }
 
-.egg{
-    width: 136px;
-    height: 190px;
-    background: #fff;
-    display: block;
-    border-radius: 50% 60% 50% 50% / 70% 70% 40% 40%;
-    display: flex;
-    justify-content: center;
-    color: black;
-    align-items: center;
-    margin-top: 20px;
-    margin-right: 40px;
+.info_about_creation {
+  display: flex;
+  justify-content: center;
+  /* width: 40%; */
+  align-items: center;
+  margin: 20px auto;
 }
 
-.egg p{
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
+.egg {
+  width: 136px;
+  height: 190px;
+  background: #fff;
+  display: block;
+  border-radius: 50% 60% 50% 50% / 70% 70% 40% 40%;
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 40px;
 }
 
-.info_about_creation h3{
-    width: 30%;
-    text-align: start;
-    font-size: 30px;
+.egg p {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.info_about_creation h3 {
+  width: 30%;
+  text-align: start;
+  font-size: 30px;
 }
