@@ -1,88 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../App.css";
-import { getBookLinks, getBookText } from "../booklinks";
-import loadingif from "../images/gif.gif";
+import loadingGif from "../images/gif.gif";
 
 function ImageUploader() {
-  const [imageUrl, setImageUrl] = useState(null);
-  const [pages, setPages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [userName, setUserName] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [userName, setUserName] = useState("");
   const [language, setLanguage] = useState("ru");
   const [gender, setGender] = useState("girl");
+  const [imageLinks, setImageLinks] = useState([]);
+  const [bookText, setBookText] = useState({});
+  const [pages, setPages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const img = event.target.files[0];
-      setImageUrl(URL.createObjectURL(img));
-      setSelectedImage(img);
-    }
-  };
-
-  const handleNameChange = (event) => {
-    const formattedName =
-      event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
-    setUserName(formattedName);
-  };
-
-  const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-  };
-
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
-
-  const uploadImage = async (img) => {
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("face", img);
-    const bookName = "encyclopedia_dino_girl_6_shaten_white_1_ru";
-
-    try {
-      const response = await fetch(
-        `https://v5-v6ovqwi4ya-el.a.run.app/swap?book=${bookName}`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Response data:", data);
-        const pagesData = Object.keys(data).map(
-          (key) => `data:image/jpeg;base64,${data[key]}`
-        );
-        setPages(pagesData);
-      } else {
-        console.error("Error:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGenerateBook = async () => {
-    if (!selectedImage || !userName) {
-      alert("Please upload an image and enter your name.");
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/");
       return;
     }
 
-    setLoading(true);
+    const {
+      selectedImage,
+      userName,
+      language,
+      gender,
+      imageLinks,
+      bookText,
+    } = location.state;
 
-    await uploadImage(selectedImage);
+    setSelectedImage(selectedImage);
+    setUserName(userName);
+    setLanguage(language);
+    setGender(gender);
+    setImageLinks(imageLinks);
+    setBookText(bookText);
 
-    const imageLinks = getBookLinks(gender, language);
-    setPages((prevPages) => [...prevPages, ...imageLinks]);
+    const uploadImage = async (img) => {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("face", img);
+      const bookName = "encyclopedia_dino_girl_6_shaten_white_1_ru";
 
-    setLoading(false);
-  };
+      try {
+        const response = await fetch(
+          `https://v5-v6ovqwi4ya-el.a.run.app/swap?book=${bookName}`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
 
-  const bookText = getBookText(gender, language);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Response data:", data);
+          const pagesData = Object.keys(data).map(
+            (key) => `data:image/jpeg;base64,${data[key]}`
+          );
+          setPages([...pagesData, ...imageLinks]);
+        } else {
+          console.error("Error:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (selectedImage) {
+      uploadImage(selectedImage);
+    }
+  }, [location, navigate]);
 
   const getBookTextWithUserName = (pageText) => {
     if (!pageText) return null;
@@ -102,34 +92,9 @@ function ImageUploader() {
 
   return (
     <div className="containerr">
-      <input
-        type="file"
-        className="input-file"
-        accept="image/*"
-        onChange={handleImageChange}
-      />
-      <input
-        type="text"
-        placeholder="Enter your name"
-        value={userName}
-        onChange={handleNameChange}
-        className="input-name"
-      />
-      <select value={language} onChange={handleLanguageChange}>
-        <option value="ru">Russian</option>
-        <option value="en">English</option>
-      </select>
-      <select value={gender} onChange={handleGenderChange}>
-        <option value="boy">Boy</option>
-        <option value="girl">Girl</option>
-      </select>
-      <button onClick={handleGenerateBook} className="generate-button">
-        Generate Book
-      </button>
       {loading && (
-        <img src={loadingif} alt="Loading..." className="loading-gif" />
+        <img src={loadingGif} alt="Loading..." className="loading-gif" />
       )}
-
       {pages.length > 0 && (
         <>
           <div className="book-container">

@@ -1,50 +1,168 @@
 export const bookLinks = {
   boy: {
-    en: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
-      "https://i.natgeofe.com/k/c9d2cffc-2152-404a-b540-1cc48bbcd3f2/spinosaurid-dino-news_3x2.jpg",
-      "https://www.timeforkids.com/wp-content/uploads/2019/01/dinosaurcover.jpg?w=1024",
-      "https://i.ytimg.com/vi/wrl2PvKFzgM/hqdefault.jpg",
-      "https://t4.ftcdn.net/jpg/07/63/21/11/360_F_763211127_SmGMdprRaoinKGTMIfEmkZ3QfjIjKC9w.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_6bPrPQPq9Y0l2DjEhAhNacyF_8dVv3vR4xZ0dnQzWYBgt6B3b_l6Aq9Q270Hn2g4dis&usqp=CAU",
-      "https://cdn.wallpapersafari.com/60/21/yupCBi.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmRi2IFT1smSkDAIkay9_Ta--5_DtfnOn-yvTNAIRdb9ERu4IimWFpQaZpAXn_8gk49qM&usqp=CAU",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    "6_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_blond_white_1_eng/13.jpg",
     ],
-    ru: [
-      "https://googlecloud.com/encyclopedia_dino_boy_1_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_2_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_3_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_4_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_5_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_6_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_7_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_8_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_boy_9_ru.jpg",
+    "6_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_brunette_white_1_eng/13.jpg",
+    ],
+    "6_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_6_shaten_white_1_eng/13.jpg",
+    ],
+    "10_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/13.jpg",
+    ],
+    "10_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_brunette_white_1_eng/13.jpg",
+    ],
+    "10_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_shaten_white_1_eng/13.jpg",
+    ],
+    "14_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_blond_white_1_eng/13.jpg",
+    ],
+    "14_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_brunette_white_1_eng/13.jpg",
+    ],
+    "14_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_14_shaten_white_1_eng/13.jpg",
     ],
   },
   girl: {
-    en: [
-      "https://googlecloud.com/encyclopedia_dino_girl_1_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_2_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_3_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_4_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_5_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_6_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_7_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_8_en.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_9_en.jpg",
+    "6_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_blond_white_1_eng/13.jpg",
     ],
-    ru: [
-      "https://googlecloud.com/encyclopedia_dino_girl_1_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_2_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_3_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_4_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_5_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_6_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_7_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_8_ru.jpg",
-      "https://googlecloud.com/encyclopedia_dino_girl_9_ru.jpg",
+    "6_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_brunette_white_1_eng/13.jpg",
+    ],
+    "6_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_6_shaten_white_1_eng/13.jpg",
+    ],
+    "10_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_blond_white_1_eng/13.jpg",
+    ],
+    "10_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_brunette_white_1_eng/13.jpg",
+    ],
+    "10_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_10_shaten_white_1_eng/13.jpg",
+    ],
+    "14_blond": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_blond_white_1_eng/13.jpg",
+    ],
+    "14_brunette": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_brunette_white_1_eng/13.jpg",
+    ],
+    "14_shaten": [
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/2.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/4.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/5.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/8.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/10.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/12.jpg",
+      "https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_girl_14_shaten_white_1_eng/13.jpg",
     ],
   },
 };
@@ -174,16 +292,11 @@ export const bookTexts = {
     ru: "Русский текст для девочек",
   },
 };
-
-export function getBookPageLinks(bookName) {
-  return bookLinks[bookName] || [];
+export function getBookPageLinks(gender, ageGroup, hairColor) {
+  const key = `${ageGroup}_${hairColor}`;
+  return bookLinks[gender][key] || [];
 }
+
 export function getBookText(gender, language) {
-  return bookTexts[gender] && bookTexts[gender][language]
-    ? bookTexts[gender][language]
-    : {};
-}
-
-export function getBookLinks(gender, language) {
-  return bookLinks[gender][language] || [];
+  return bookTexts[gender][language] || "";
 }

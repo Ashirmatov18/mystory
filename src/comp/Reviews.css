@@ -1,4 +1,4 @@
-.main{
+.mainn{
     background-color: #0E4905;
     /* padding: 1em; */
     padding-top: 100px;
@@ -16,9 +16,18 @@
     color: #fff;
 }
 
+.review_all{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 70%;
+}
+
 .photo_review{
     display: flex;
     justify-content: space-between;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 .comments{
@@ -26,11 +35,23 @@
     color: black;
     width: 25%;
     margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 510px;
+}
 
+.comment_review{
+    padding: 20px;
+}
+
+.user_picture{
+    background-image: url('https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/1.jpg');
+    height: 420px;
 }
 
 .comments:nth-child(2){
-    background-color: red;
+    /* background-color: red; */
+    height: 440px;
 }
 
 .stars{
@@ -38,7 +59,7 @@
     justify-content: start;
     align-items: center;
     border-bottom: 1px solid #fff;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .show_more{
@@ -50,6 +71,8 @@
     color: white;
     width: 200px;
 }
+
+
 
 .video_block_review{
     border: 1px solid white;
@@ -127,4 +150,55 @@
     width: 30%;
     text-align: start;
     font-size: 30px;
+}
+
+.video{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /* height: 100%; */
+}
+
+.video-button{
+    height: 80px;
+    width: 50%;
+    border-radius: 30px;
+    margin-top: 50px;
+    background-color: #10C8B0;
+    filter: drop-shadow(5px 5px 5px black);
+    border: none;
+    color:#fff;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.react-multi-carousel-list  {
+    height: 500px;
+}
+
+.carousel-item {
+    position: relative;
+    padding: 10px;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.carousel-caption h2,
+.carousel-caption h3,
+.carousel-caption p {
+    margin: 5px 0;
 }
