@@ -6,8 +6,11 @@ import ln from "../images/linkedin(2).svg";
 import inst from "../images/instagram(3).svg";
 import dinofooter from "../images/1939441 1.svg";
 import sakura from "../images/pngwing 12.svg";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="footer_main">
@@ -17,7 +20,8 @@ export default function Footer() {
           </div>
           <div>
             <p>
-              Explore the Magic <br /> <br /> A unique gift for your loved one
+              {t("dino.home.footer.explore-magic-1")} <br /> <br />
+              {t("dino.home.footer.explore-magic-2")}
             </p>
           </div>
           <div>
@@ -27,14 +31,14 @@ export default function Footer() {
         <div className="footer_second">
           <div className="links">
             <ul>
-              <li>Home</li>
-              <li>Personalized Books</li>
-              <li>Contact</li>
-              <li>Privacy</li>
+              <li>{t("dino.home.footer.home")}</li>
+              <li>{t("dino.home.footer.personalized-books")}</li>
+              <li>{t("dino.home.footer.contact")}</li>
+              <li>{t("dino.home.footer.privacy")}</li>
             </ul>
           </div>
           <div>
-            <p>Social</p>
+            <p>{t("dino.home.footer.social")}</p>
             <div className="social">
               <img src={f} alt="" />
               <img src={inst} alt="" />
@@ -43,7 +47,7 @@ export default function Footer() {
           </div>
           <div className="line"></div>
           <div className="reserved">
-            <h2>mystory.com© all right reserve</h2>
+            <h2>mystory.com© {t("dino.home.footer.rights-reserved")}</h2>
           </div>
         </div>
         <img src={sakura} alt="" className="sakura" />
@@ -53,7 +57,7 @@ export default function Footer() {
         <div>
           <Logo />
         </div>
-        <h2>Home</h2>
+        <h2>{t("dino.home.footer.home")}</h2>
       </div>
     </>
   );
