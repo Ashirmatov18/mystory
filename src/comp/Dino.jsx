@@ -280,8 +280,11 @@ export default function Dino() {
       <div className="info_page">
         <div className="nav">
           <div className="logo">
-            <Logo />
-          </div>{" "}
+            <Link to="/">
+              <Logo />
+            </Link>
+          </div>
+
           <div className="language-select-wrapper">
             <select
               value={language}
@@ -336,7 +339,9 @@ export default function Dino() {
                   classNames="fade"
                 >
                   <div ref={buttonRefs[0]}>
-                    <button>{t("dino.home.personalize")}</button>
+                    <Link to="/personalize">
+                      <button>{t("dino.home.personalize")}</button>
+                    </Link>
                   </div>
                 </CSSTransition>
                 <CSSTransition
@@ -366,51 +371,22 @@ export default function Dino() {
           </div>
         </div>
         <div className="svg_links">
-          <CSSTransition
-            in={hasAnimated.svgs[0]}
-            timeout={1000}
-            classNames="fade-slide-left"
-          >
-            <div ref={svgRefs[0]} className="link_in">
+          <div className="icon-row">
+            <div className="icon-container">
               <Car />
+              <p>Free & fast shipping</p>
             </div>
-          </CSSTransition>
-          <CSSTransition
-            in={hasAnimated.svgs[1]}
-            timeout={1000}
-            classNames="fade-slide-right"
-          >
-            <div ref={svgRefs[1]} className="link_in">
-              <Bot className="cars" />
-            </div>
-          </CSSTransition>
-          <CSSTransition
-            in={hasAnimated.svgs[2]}
-            timeout={1000}
-            classNames="fade-slide-left"
-          >
-            <div ref={svgRefs[2]} className="link_in">
+            <div className="dot">•</div> {/* Добавляем точку */}
+            <div className="icon-container">
               <People />
+              <p>Ages 3 or 12</p>
             </div>
-          </CSSTransition>
-          <CSSTransition
-            in={hasAnimated.svgs[3]}
-            timeout={1000}
-            classNames="fade-slide-right"
-          >
-            <div ref={svgRefs[3]} className="link_in">
-              <Bot className="cars" />
-            </div>
-          </CSSTransition>
-          <CSSTransition
-            in={hasAnimated.svgs[4]}
-            timeout={1000}
-            classNames="fade-slide-left"
-          >
-            <div ref={svgRefs[4]} className="link_in">
+            <div className="dot">•</div> {/* Добавляем точку */}
+            <div className="icon-container">
               <MadeIn />
+              <p>Made in US</p>
             </div>
-          </CSSTransition>
+          </div>
         </div>
         <div className="scroll">
           <ScrollUpDown />
@@ -472,10 +448,9 @@ export default function Dino() {
               classNames="fade"
             >
               <div ref={textRefs[0]}>
-                <h1>What We Provide</h1>
+                <h1>{t("dino.home.what-we-provide")}</h1>
               </div>
             </CSSTransition>
-            <h1>{t("dino.home.what-we-provide")}</h1>
             <br />
             <CSSTransition
               in={hasAnimated.texts[1]}
@@ -483,7 +458,7 @@ export default function Dino() {
               classNames="fade"
             >
               <div ref={textRefs[1]}>
-                <h3>Customized Book with Your Child's Photos</h3>
+                <h3>{t("dino.home.cusomized-book")}</h3>
               </div>
             </CSSTransition>
             <CSSTransition
@@ -492,16 +467,9 @@ export default function Dino() {
               classNames="fade"
             >
               <div ref={textRefs[2]}>
-                <h5>
-                  Discover the wonder of dinosaurs with a custom book, uniquely
-                  crafted with your child's photos! Dive into an engaging
-                  expedition where they become part of the story, fostering a
-                  love for learning and exploration.
-                </h5>
+                <h5>{t("dino.home.cusomized-book-description")}</h5>
               </div>
             </CSSTransition>
-            <h3>{t("dino.home.cusomized-book")}</h3>
-            <h5>{t("dino.home.cusomized-book-description")}</h5>
             <br />
             <h3>{t("dino.home.more-than-20")}</h3>
             <h5>{t("dino.home.learn-about-dinos")}</h5>
@@ -514,9 +482,11 @@ export default function Dino() {
               classNames="fade"
             >
               <div ref={buttonRefs[2]}>
-                <button className="ency_more">
-                  {t("dino.home.more-info")}
-                </button>
+                <Link to="/review">
+                  <button className="ency_more">
+                    {t("dino.home.more-info")}
+                  </button>
+                </Link>
               </div>
             </CSSTransition>
           </div>

@@ -6,6 +6,36 @@
   background-color: #103A0B;
   color: #fff;
 }
+
+.icon-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.icon-container svg {
+  width: 70px; 
+  height: auto;
+}
+
+.icon-container p {
+  margin: 5px 0 0;
+  font-size: 14px; 
+}
+
+.dot {
+  font-size: 40px; 
+  margin: 0 10px; 
+}
+
 .fade-enter {
   opacity: 0;
   transform: translateY(-20px);
@@ -132,7 +162,7 @@ cursor: pointer;
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   position: relative;
 }
 
@@ -141,8 +171,36 @@ cursor: pointer;
   justify-content: center;
   padding-top: 90px;
   margin: 0 auto;
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease-in-out; /* Плавный переход для всех изменений */
+
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instruction h2,
+.instruction h4 {
+  margin: 10px 0;
+  opacity: 0;
+  animation: fadeIn 1s forwards; /* Анимация появления текста */
+}
+
+.instruction h2 {
+  animation-delay: 0.2s;
+}
+
+.instruction h4 {
+  animation-delay: 0.4s;
+}
 
 
 .scroll{
@@ -208,7 +266,7 @@ cursor: pointer;
   font-weight: 200;
 }
 
-.instruction button{
+.instruction button {
   width: 100%;
   height: 60px;
   border-radius: 20px;
@@ -218,6 +276,18 @@ cursor: pointer;
   color: #fff;
   filter: drop-shadow(5px 5px 5px black);
   border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.instruction button:hover {
+  background-color: #cf850c;
+  transform: translateY(-2px);
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.3));
+}
+
+.instruction button:active {
+  transform: translateY(1px);
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
 }
 
 .branch{
@@ -242,12 +312,21 @@ cursor: pointer;
   font-size: 40px;
   margin-bottom: 0;
   margin-top: 0;
+  animation: fadeIn 1s forwards;
 }
 
 .pic_disco h1:first-child{
   margin-top: 20px;
   text-decoration: line-through;
   font-weight: 100;
+  text-decoration: line-through;
+  /* color: #999; */
+  animation-delay: 0.6s;
+
+}
+
+.pic_disco h1:last-child {
+  animation-delay: 0.8s;
 }
 
 .road{

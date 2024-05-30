@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "../../App.css";
 import { getBookPageLinks, getBookText } from "../../booklinks";
 import Footer from "../Footer";
+import { Logo } from "../SvgImages";
+import { Payment } from "../SvgImages";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Personalize() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -113,6 +116,16 @@ function Personalize() {
 
   return (
     <div className="main_personalize">
+      <div className="nav">
+        <div className="logo">
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        <Link to="/payment">
+          <img src={Payment} alt="" className="payment" />
+        </Link>
+      </div>
       <div class="how-it-works">
         <h2 class="how-it-works-title">HOW IT WORKS?</h2>
         <div class="how-it-works-steps">
