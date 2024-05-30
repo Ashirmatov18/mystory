@@ -19,11 +19,24 @@ import dinofooter from "../images/1939441 1.svg";
 import Modal from "./modal/Modal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import flagUS from "../images/us.png";
+import flagRU from "../images/rus.png";
 
 export default function Dino() {
   const [open, setOpen] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+
+  useEffect(() => {
+    const selectElement = document.querySelector(".language-select");
+    if (selectElement) {
+      if (language === "en") {
+        selectElement.style.backgroundImage = `url(${flagUS})`;
+      } else if (language === "ru") {
+        selectElement.style.backgroundImage = `url(${flagRU})`;
+      }
+    }
+  }, [language]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -61,7 +74,17 @@ export default function Dino() {
     setOpen((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-<<<<<<< HEAD
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const handleChangeLanguage = (lng) => {
+    setLanguage(lng);
+    changeLanguage(lng);
+  };
+
   const [branchRef, branchInView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -113,6 +136,12 @@ export default function Dino() {
   });
   const [textRefs, setTextRefs] = useState([]);
   const [svgRefs, setSvgRefs] = useState([]);
+  const [instructionRefs, setInstructionRefs] = useState([]);
+  const [buttonRefs, setButtonRefs] = useState([]);
+  const [dinoRef, dinoInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   // Use state to keep track of whether the animations have been triggered
   const [hasAnimated, setHasAnimated] = useState({
@@ -130,6 +159,9 @@ export default function Dino() {
     infoBookImg: false,
     texts: [],
     svgs: [],
+    instructions: [],
+    buttons: [],
+    dino: false,
   });
 
   // Update state when elements come into view
@@ -158,6 +190,8 @@ export default function Dino() {
       setHasAnimated((prev) => ({ ...prev, encyPic: true }));
     if (infoBookImgInView && !hasAnimated.infoBookImg)
       setHasAnimated((prev) => ({ ...prev, infoBookImg: true }));
+    if (dinoInView && !hasAnimated.dino)
+      setHasAnimated((prev) => ({ ...prev, dino: true }));
 
     textRefs.forEach((ref, index) => {
       if (ref && ref.inView && !hasAnimated.texts[index]) {
@@ -178,6 +212,26 @@ export default function Dino() {
         });
       }
     });
+
+    instructionRefs.forEach((ref, index) => {
+      if (ref && ref.inView && !hasAnimated.instructions[index]) {
+        setHasAnimated((prev) => {
+          const newInstructions = [...prev.instructions];
+          newInstructions[index] = true;
+          return { ...prev, instructions: newInstructions };
+        });
+      }
+    });
+
+    buttonRefs.forEach((ref, index) => {
+      if (ref && ref.inView && !hasAnimated.buttons[index]) {
+        setHasAnimated((prev) => {
+          const newButtons = [...prev.buttons];
+          newButtons[index] = true;
+          return { ...prev, buttons: newButtons };
+        });
+      }
+    });
   }, [
     branchInView,
     smalldinoInView,
@@ -191,8 +245,11 @@ export default function Dino() {
     dinofooterInView,
     encyPicInView,
     infoBookImgInView,
+    dinoInView,
     textRefs,
     svgRefs,
+    instructionRefs,
+    buttonRefs,
   ]);
 
   useEffect(() => {
@@ -206,55 +263,17 @@ export default function Dino() {
         .fill()
         .map((_, i) => refs[i] || React.createRef())
     );
+    setInstructionRefs((refs) =>
+      Array(4)
+        .fill()
+        .map((_, i) => refs[i] || React.createRef())
+    );
+    setButtonRefs((refs) =>
+      Array(10)
+        .fill()
+        .map((_, i) => refs[i] || React.createRef())
+    );
   }, [infocompany.length]);
-
-  return (
-    <div className="main">
-      <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
-        <div className="info_page">
-          <div className="nav">
-            <div className="logo">
-              <Logo />
-            </div>
-            <Link to="/payment">
-              <img src={Payment} alt="" className="payment" />
-            </Link>
-          </div>
-          <div className="discover">
-            <div className="main_info">
-              <CSSTransition
-                in={hasAnimated.branch}
-                timeout={1000}
-                classNames="fade-slide-right"
-              >
-                <img
-                  ref={branchRef}
-                  src={branchmain}
-                  alt=""
-                  className="branch"
-                />
-              </CSSTransition>
-              <div className="info_disco">
-                <div className="instruction">
-                  <h2>Discover Dinosaurs world</h2>
-                  <h4>Personalized books with your kid as the main hero</h4>
-                  <button>Personalize</button>
-                  <h2>Follow the instructions</h2>
-                  <h4>
-                    Click on the button above and watch what happens after below
-                  </h4>
-                </div>
-=======
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
-
-  const handleChangeLanguage = (lng) => {
-    setLanguage(lng);
-    changeLanguage(lng);
-  };
 
   return (
     <div className="main">
@@ -263,13 +282,18 @@ export default function Dino() {
           <div className="logo">
             <Logo />
           </div>{" "}
-          <div>
+          <div className="language-select-wrapper">
             <select
               value={language}
               onChange={(e) => handleChangeLanguage(e.target.value)}
+              className="language-select"
             >
-              <option value="en">{t("language.eng")}</option>
-              <option value="ru">{t("language.ru")}</option>
+              <option value="en" data-icon="url(/images/flag_us.png)">
+                {t("language.eng")}
+              </option>
+              <option value="ru" data-icon="url(/images/flag_ru.png)">
+                {t("language.ru")}
+              </option>
             </select>
           </div>
           <Link to="/payment">
@@ -279,91 +303,125 @@ export default function Dino() {
         </div>
         <div className="discover">
           <div className="main_info">
-            {/* <div className="branch"></div> */}
-            <img src={branchmain} alt="" className="branch" />
+            <CSSTransition
+              in={hasAnimated.branch}
+              timeout={1000}
+              classNames="fade-slide-right"
+            >
+              <img ref={branchRef} src={branchmain} alt="" className="branch" />
+            </CSSTransition>
             <div className="info_disco">
               <div className="instruction">
-                <h2>{t("dino.home.discover")}</h2>
-                <h4>{t("dino.home.description")}</h4>
-                <button>{t("dino.home.personalize")}</button>
-                <h2>{t("dino.home.follow-instructions")}</h2>
-                <h4>{t("dino.home.click-button")}</h4>
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
+                <CSSTransition
+                  in={hasAnimated.instructions[0]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={instructionRefs[0]}>
+                    <h2>{t("dino.home.discover")}</h2>
+                  </div>
+                </CSSTransition>
+                <CSSTransition
+                  in={hasAnimated.instructions[1]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={instructionRefs[1]}>
+                    <h4>{t("dino.home.description")}</h4>
+                  </div>
+                </CSSTransition>
+                <CSSTransition
+                  in={hasAnimated.buttons[0]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={buttonRefs[0]}>
+                    <button>{t("dino.home.personalize")}</button>
+                  </div>
+                </CSSTransition>
+                <CSSTransition
+                  in={hasAnimated.instructions[2]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={instructionRefs[2]}>
+                    <h2>{t("dino.home.follow-instructions")}</h2>
+                  </div>
+                </CSSTransition>
+                <CSSTransition
+                  in={hasAnimated.instructions[3]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={instructionRefs[3]}>
+                    <h4>{t("dino.home.click-button")}</h4>
+                  </div>
+                </CSSTransition>
               </div>
             </div>
-            <div className="pic_disco">
-              <h1>$60 </h1>
-              <h1>$39.90</h1>
-            </div>
           </div>
-          <div className="svg_links">
-            <div className="links_in">
-              <CSSTransition
-                in={hasAnimated.svgs[0]}
-                timeout={1000}
-                classNames="fade-slide-left"
-              >
-                <div ref={svgRefs[0]}>
-                  <Car />
-                </div>
-              </CSSTransition>
-            </div>
-            <div className="link_in">
-              <CSSTransition
-                in={hasAnimated.svgs[1]}
-                timeout={1000}
-                classNames="fade-slide-right"
-              >
-                <div ref={svgRefs[1]}>
-                  <Bot className="cars" />
-                </div>
-              </CSSTransition>
-            </div>
-            <div className="links_in">
-              <CSSTransition
-                in={hasAnimated.svgs[2]}
-                timeout={1000}
-                classNames="fade-slide-left"
-              >
-                <div ref={svgRefs[2]}>
-                  <People />
-                </div>
-              </CSSTransition>
-            </div>
-            <div className="link_in">
-              <CSSTransition
-                in={hasAnimated.svgs[3]}
-                timeout={1000}
-                classNames="fade-slide-right"
-              >
-                <div ref={svgRefs[3]}>
-                  <Bot className="cars" />
-                </div>
-              </CSSTransition>
-            </div>
-            <div className="links_in">
-              <CSSTransition
-                in={hasAnimated.svgs[4]}
-                timeout={1000}
-                classNames="fade-slide-left"
-              >
-                <div ref={svgRefs[4]}>
-                  <MadeIn />
-                </div>
-              </CSSTransition>
-            </div>
-          </div>
-          <div className="scroll">
-            <ScrollUpDown />
+          <div className="pic_disco">
+            <h1>$60 </h1>
+            <h1>$39.90</h1>
           </div>
         </div>
-      </CSSTransition>
+        <div className="svg_links">
+          <CSSTransition
+            in={hasAnimated.svgs[0]}
+            timeout={1000}
+            classNames="fade-slide-left"
+          >
+            <div ref={svgRefs[0]} className="link_in">
+              <Car />
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={hasAnimated.svgs[1]}
+            timeout={1000}
+            classNames="fade-slide-right"
+          >
+            <div ref={svgRefs[1]} className="link_in">
+              <Bot className="cars" />
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={hasAnimated.svgs[2]}
+            timeout={1000}
+            classNames="fade-slide-left"
+          >
+            <div ref={svgRefs[2]} className="link_in">
+              <People />
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={hasAnimated.svgs[3]}
+            timeout={1000}
+            classNames="fade-slide-right"
+          >
+            <div ref={svgRefs[3]} className="link_in">
+              <Bot className="cars" />
+            </div>
+          </CSSTransition>
+          <CSSTransition
+            in={hasAnimated.svgs[4]}
+            timeout={1000}
+            classNames="fade-slide-left"
+          >
+            <div ref={svgRefs[4]} className="link_in">
+              <MadeIn />
+            </div>
+          </CSSTransition>
+        </div>
+        <div className="scroll">
+          <ScrollUpDown />
+        </div>
+      </div>
       <CSSTransition
-        in={hasAnimated.smalldino}
+        in={hasAnimated.dino}
         timeout={1000}
         classNames="fade-slide-left"
       >
-        <img ref={smalldinoRef} src={smalldino} alt="" className="dino" />
+        <img ref={dinoRef} src={smalldino} alt="" className="dino" />
       </CSSTransition>
 
       <div className="road"></div>
@@ -377,9 +435,17 @@ export default function Dino() {
           <img ref={fingerRef} src={lycan} alt="" className="finger" />
         </CSSTransition>
         <div className="buttons">
-          <button className="order_bt" onClick={openModal}>
-            {t("dino.home.order-now")}
-          </button>
+          <CSSTransition
+            in={hasAnimated.buttons[1]}
+            timeout={1000}
+            classNames="fade"
+          >
+            <div ref={buttonRefs[1]}>
+              <button className="order_bt" onClick={openModal}>
+                {t("dino.home.order-now")}
+              </button>
+            </div>
+          </CSSTransition>
           <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
       </div>
@@ -400,7 +466,6 @@ export default function Dino() {
             <div ref={encyPicRef} className="ency_pic"></div>
           </CSSTransition>
           <div className="ency_info">
-<<<<<<< HEAD
             <CSSTransition
               in={hasAnimated.texts[0]}
               timeout={1000}
@@ -410,6 +475,7 @@ export default function Dino() {
                 <h1>What We Provide</h1>
               </div>
             </CSSTransition>
+            <h1>{t("dino.home.what-we-provide")}</h1>
             <br />
             <CSSTransition
               in={hasAnimated.texts[1]}
@@ -434,59 +500,6 @@ export default function Dino() {
                 </h5>
               </div>
             </CSSTransition>
-            <br />
-            <CSSTransition
-              in={hasAnimated.texts[3]}
-              timeout={1000}
-              classNames="fade"
-            >
-              <div ref={textRefs[3]}>
-                <h3>More than 20 dinosaurs featured in our pages</h3>
-              </div>
-            </CSSTransition>
-            <CSSTransition
-              in={hasAnimated.texts[4]}
-              timeout={1000}
-              classNames="fade"
-            >
-              <div ref={textRefs[4]}>
-                <h5>
-                  Learn about the alluring ancient reptiles: Eoraptor,
-                  Plateosaurus, Postosuchus, Brontosaurus, Apatosaurus,
-                  Diplodocus, Kentosaurus, Composagnathus, Archeopteryx,
-                  Tyrannosaurus Rex, Triceratops, Velociraptor, Spinosaurus,
-                  Ankylosaurus, Pteranodon, Parasaurolophus,
-                  Carcharodontosaurus, Argentinosaurus, Stegocephalus,
-                  Titanosaurus.
-                </h5>
-              </div>
-            </CSSTransition>
-            <CSSTransition
-              in={hasAnimated.texts[5]}
-              timeout={1000}
-              classNames="fade"
-            >
-              <div ref={textRefs[5]}>
-                <h3>Immersive story written by top wordsmiths</h3>
-              </div>
-            </CSSTransition>
-            <CSSTransition
-              in={hasAnimated.texts[6]}
-              timeout={1000}
-              classNames="fade"
-            >
-              <div ref={textRefs[6]}>
-                <h5>
-                  Created by a team of paleontology experts, experienced
-                  writers, and a psychologist, our encyclopedia guarantees a
-                  safe and enriching experience for your child.
-                </h5>
-              </div>
-            </CSSTransition>
-            <button className="ency_more">More Info</button>
-=======
-            <h1>{t("dino.home.what-we-provide")}</h1>
-            <br />
             <h3>{t("dino.home.cusomized-book")}</h3>
             <h5>{t("dino.home.cusomized-book-description")}</h5>
             <br />
@@ -495,8 +508,17 @@ export default function Dino() {
             <h3>{t("dino.home.immersive-story")}</h3>
             <h5>{t("dino.home.created-by")}</h5>
 
-            <button className="ency_more">{t("dino.home.more-info")}</button>
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
+            <CSSTransition
+              in={hasAnimated.buttons[2]}
+              timeout={1000}
+              classNames="fade"
+            >
+              <div ref={buttonRefs[2]}>
+                <button className="ency_more">
+                  {t("dino.home.more-info")}
+                </button>
+              </div>
+            </CSSTransition>
           </div>
         </div>
       </div>
@@ -548,21 +570,15 @@ export default function Dino() {
 
       <div className="maininfocompany">
         <div className="information">
-<<<<<<< HEAD
-          <h1>Personalized Dinosaur Encyclopedia FAQs</h1>
-          {infocompany.map((item, index) => (
-=======
           <h1>{t("dino.home.faq.title")}</h1>
-          {infocompany.map((item) => (
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
+          {infocompany.map((item, index) => (
             <div key={item.id} className="findoutinfo">
               <div className="findoutmainfo">
-                <h2>{t(item.title)}</h2>
+                <h2>{item.title}</h2>
                 <button onClick={() => toggle(item.id)}>
                   {open[item.id] ? "^" : "v"}
                 </button>
               </div>
-<<<<<<< HEAD
               <CSSTransition
                 in={hasAnimated.texts[index + 7]}
                 timeout={1000}
@@ -572,9 +588,6 @@ export default function Dino() {
                   {open[item.id] && <p>{item.content}</p>}
                 </div>
               </CSSTransition>
-=======
-              {open[item.id] && <p>{t(item.content)}</p>}
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
             </div>
           ))}
         </div>
@@ -588,7 +601,6 @@ export default function Dino() {
       </div>
 
       <div className="argedino">
-<<<<<<< HEAD
         <CSSTransition
           in={hasAnimated.bigdino}
           timeout={1000}
@@ -596,16 +608,7 @@ export default function Dino() {
         >
           <img ref={bigdinoRef} src={bigdino} alt="" className="bigdino" />
         </CSSTransition>
-        <p>
-          Your children can see themselves as explorers, traveling through the
-          ages, encountering dinosaurs face to face. It's not just a book – it's
-          an adventure that will captivate their imagination and bring an
-          incredible dose of magic and knowledge into their world.
-        </p>
-=======
-        <img src={bigdino} alt="" className="bigdino" />
         <p>{t("dino.home.argedino")}</p>
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
       </div>
 
       <div className="swapinfo">
@@ -622,7 +625,15 @@ export default function Dino() {
             <div className="bookexample">
               <div className="book"></div>
               <div className="personalize">
-                <button>{t("dino.home.personalize-book")}</button>
+                <CSSTransition
+                  in={hasAnimated.buttons[3]}
+                  timeout={1000}
+                  classNames="fade"
+                >
+                  <div ref={buttonRefs[3]}>
+                    <button>{t("dino.home.personalize-book")}</button>
+                  </div>
+                </CSSTransition>
                 <h5>{t("dino.home.click-now")}</h5>
               </div>
             </div>
@@ -659,7 +670,15 @@ export default function Dino() {
               id=""
               placeholder={t("dino.home.email")}
             />
-            <button type="submit">{t("dino.home.send")}</button>
+            <CSSTransition
+              in={hasAnimated.buttons[4]}
+              timeout={1000}
+              classNames="fade"
+            >
+              <div ref={buttonRefs[4]}>
+                <button type="submit">{t("dino.home.send")}</button>
+              </div>
+            </CSSTransition>
           </div>
         </div>
         <CSSTransition

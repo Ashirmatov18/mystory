@@ -93,6 +93,40 @@ button:hover{
 cursor: pointer;
 }
 
+.language-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.language-select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('/src/images/us.png'), linear-gradient(45deg, transparent 50%, gray 50%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 10px center, right center;
+  background-size: 20px auto, 100%;
+  padding-right: 30px;
+}
+
+.language-select option[value="en"] {
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 30px; 
+}
+
+.language-select option[value="ru"] {
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 30px;
+}
+
+
 .info_page{
   background-image: url('../public/snapedit_1712131889849\ 1.jpg');
   background-size: cover;
