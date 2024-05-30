@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 .mainn{
     background-color: #0E4905;
     /* padding: 1em; */
-    padding-top: 100px;
-=======
+    padding-top: 100px;}
 .main {
   background-color: #0e4905;
   /* padding: 1em; */
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
 }
 
 .first_block_review {
@@ -22,7 +19,6 @@
   color: #fff;
 }
 
-<<<<<<< HEAD
 .review_all{
     display: flex;
     justify-content: space-between;
@@ -67,8 +63,8 @@
     align-items: center;
     border-bottom: 1px solid #fff;
     margin-bottom: 10px;
-=======
-.photo_review {
+}
+    .photo_review {
   display: flex;
   justify-content: space-between;
 }
@@ -90,7 +86,6 @@
   align-items: center;
   border-bottom: 1px solid #fff;
   margin-bottom: 50px;
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
 }
 
 .show_more {
@@ -103,20 +98,7 @@
   width: 200px;
 }
 
-<<<<<<< HEAD
 
-
-.video_block_review{
-    border: 1px solid white;
-    width: 90%;
-    margin: 100px auto;
-    height: 800px;
-    border-radius: 10px;
-    position: relative;
-    text-align: center;
-    padding: 10px;
-    color: #fff;
-=======
 .video_block_review {
   border: 1px solid white;
   width: 90%;
@@ -127,7 +109,6 @@
   text-align: center;
   padding: 10px;
   color: #fff;
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
 }
 
 .info_us {
@@ -189,7 +170,6 @@
   text-align: center;
 }
 
-<<<<<<< HEAD
 .info_about_creation h3{
     width: 30%;
     text-align: start;
@@ -244,11 +224,9 @@
 .carousel-caption h2,
 .carousel-caption h3,
 .carousel-caption p {
-    margin: 5px 0;
-=======
+    margin: 5px 0;}
 .info_about_creation h3 {
   width: 30%;
   text-align: start;
   font-size: 30px;
->>>>>>> 939a33bb5541d03181323bdfc001b69c439253ae
 }
