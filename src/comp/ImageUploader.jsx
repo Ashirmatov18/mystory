@@ -21,14 +21,8 @@ function ImageUploader() {
       return;
     }
 
-    const {
-      selectedImage,
-      userName,
-      language,
-      gender,
-      imageLinks,
-      bookText,
-    } = location.state;
+    const { selectedImage, userName, language, gender, imageLinks, bookText } =
+      location.state;
 
     setSelectedImage(selectedImage);
     setUserName(userName);
@@ -41,7 +35,7 @@ function ImageUploader() {
       setLoading(true);
       const formData = new FormData();
       formData.append("face", img);
-      const bookName = "encyclopedia_dino_girl_6_shaten_white_1_ru";
+      const bookName = "encyclopedia_dino_boy_6_blond_white_1_eng";
 
       try {
         const response = await fetch(
@@ -49,6 +43,9 @@ function ImageUploader() {
           {
             method: "POST",
             body: formData,
+            headers: {
+              Accept: "application/json",
+            },
           }
         );
 
