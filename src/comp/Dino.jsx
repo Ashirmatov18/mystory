@@ -480,9 +480,9 @@ export default function Dino() {
             </div>
           </div>
         </div>
-        <div className="scroll">
-          <ScrollUpDown />
-        </div>
+        {/* <div className="scroll"> */}
+        {/* <ScrollUpDown /> */}
+        {/* </div> */}
       </div>
       <CSSTransition
         in={hasAnimated.dino}

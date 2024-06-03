@@ -483,7 +483,7 @@ cursor: pointer;
 
 .road{
   background-image: url('../public/snapedit_1712132271683\ 1.jpg');
-  height: 30vh;
+  height: 20vh;
   position: relative;
 }
 
@@ -2001,6 +2001,26 @@ text-align: start;
   }
 }
 
+@media only screen and (max-width: 1200px){
+  .trexx{
+    width: 40%;
+    height: 100%;
+    margin-top: 100px;
+  }
+  .childrens{
+    padding-left: 0;
+    width: 40%;
+  }
+  .info_page{height: auto;}
+  .branch{
+    margin-left: -30px;
+  }
+  .dino{
+    height: 30%;
+
+  }
+}
+
 
 
 @media only screen and (max-width: 1100px){
@@ -2054,6 +2074,9 @@ text-align: start;
   }
   .ezera{
     bottom: -30px;
+  }
+  .buttons{
+    margin-left: 200px;
   }
 }
 
@@ -2109,6 +2132,11 @@ text-align: start;
   .boysswapped{
     width: 300px;
   }
+  .ency {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 }
 
 
@@ -2126,7 +2154,7 @@ text-align: start;
     height: 100vh;
   }
   .svg_links{
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
   }
   .finger{
     height: 100%;
@@ -2149,7 +2177,7 @@ text-align: start;
   }
 
   .ency_info{
-    width: 100%;
+    width: 80%;
   }
   .ency_pic{
     height: 450px;
@@ -2243,15 +2271,26 @@ text-align: start;
   .footerdinomobile{
     display: block;
   }
+
+  .ezera{
+    height: 60%;
+  }
+  .buttons{
+    margin-left: 0;
+  }
+  .carousels-slide img {
+    width: 100%;
+    height: 300px;}
+    .footer_main{
+      display: none;
+    }
 }
 
 
 @media only screen and (max-width: 600px) {
  
 
-  .footer_main{
-    display: none;
-  }
+  
 
   .info_page{
     height: 100vh;
@@ -2516,7 +2555,8 @@ text-align: start;
   }
 
   .caro_information{
-    font-size: 15px;
+    font-size: 12px;
+    text-align: justify;
   }
 
   .infobookimg{
@@ -2710,9 +2750,7 @@ text-align: start;
   .products{
     margin-top: 20px;
   }
-  .caro_information{
-    font-size: 15px;
-  }
+
   .info_disco h2:first-child {
     padding-top: 5px;
   }
