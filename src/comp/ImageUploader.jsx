@@ -150,6 +150,8 @@ function ImageUploader() {
       ));
   };
 
+  console.log(pages);
+
   return (
     <div>
       <div className="info_page">
@@ -278,7 +280,7 @@ function ImageUploader() {
                         {getBookTextWithUserName(bookText.page8)}
                       </div>
                       <img
-                        src={pages[7]}
+                        src={pages[2]}
                         alt="Page 8"
                         className="half-page-image sevenimg"
                       />
@@ -291,10 +293,10 @@ function ImageUploader() {
               <section className="open-book">
                 <div className="book-spread">
                   <div className="book-page full-page-image">
-                    <img src={pages[8]} alt="Page 9" />
+                    <img src={pages[7]} alt="Page 9" />
                   </div>
                   <div className="book-page full-page-image">
-                    <img src={pages[9]} alt="Page 10" />
+                    <img src={pages[10]} alt="Page 10" />
                   </div>
                 </div>
               </section>
@@ -308,14 +310,14 @@ function ImageUploader() {
                         {getBookTextWithUserName(bookText.page11)}
                       </div>
                       <img
-                        src={pages[2]}
+                        src={pages[8]}
                         alt="Page 11"
                         className="half-page-image elevenimg"
                       />
                     </div>
                   </div>
                   <div className="book-page full-page-image">
-                    <img src={pages[10]} alt="Page 12" />
+                    <img src={pages[9]} alt="Page 12" />
                   </div>
                 </div>
               </section>
