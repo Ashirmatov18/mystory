@@ -17,7 +17,6 @@ function App() {
           <Route path="/payment" element={<StripeCheckout />} />
           <Route path="/review" element={<Reviews />} />
           <Route path="/personalize" element={<Personalize />} />
-          <Route path="/review" element={<Reviews />} />
           <Route path="/payment" element={<Checkout />} />
         </Routes>
       </BrowserRouter>

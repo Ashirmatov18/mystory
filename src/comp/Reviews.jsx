@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Reviews.css";
 import ReactStars from "react-stars";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import firstflow from "../images/13.png";
+import secondflow from "../images/12.png";
+import thirdflow from "../images/Листочек 3 1.png";
+import fourthflow from "../images/Листочки 2 1.png";
+import mask from "../images/Mask group 1 (1).png";
+import circlegreen from "../images/Ellipse 240.png";
+import swaped from "../images/swap.jpg";
+import Footer from "./Footer";
+import { Logo } from "./SvgImages";
+import { Link } from "react-router-dom";
+import Payment from "../images/online-pay-svgrepo-com.svg";
 
 export default function Reviews() {
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
+
+  const carouselRef = useRef();
 
   const items = [
     {
@@ -49,6 +60,45 @@ export default function Reviews() {
     },
   ];
 
+  const reviews = [
+    {
+      image: swaped,
+      initials: "KL",
+      name: "Klara L",
+      date: "1/2/2024",
+      comment:
+        "Thank you! Cool idea with butterflies, and special thanks to you for the stickers 🌷🙌",
+      rating: 5,
+    },
+    {
+      image: swaped,
+      initials: "KL",
+      name: "Klara L",
+      date: "1/2/2024",
+      comment:
+        "Thank you! Cool idea with butterflies, and special thanks to you for the stickers 🌷🙌",
+      rating: 5,
+    },
+    {
+      image: swaped,
+      initials: "KL",
+      name: "Klara L",
+      date: "1/2/2024",
+      comment:
+        "Thank you! Cool idea with butterflies, and special thanks to you for the stickers 🌷🙌",
+      rating: 5,
+    },
+    {
+      image: swaped,
+      initials: "KL",
+      name: "Klara L",
+      date: "1/2/2024",
+      comment:
+        "Thank you! Cool idea with butterflies, and special thanks to you for the stickers 🌷🙌",
+      rating: 5,
+    },
+  ];
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -56,7 +106,7 @@ export default function Reviews() {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -67,11 +117,37 @@ export default function Reviews() {
       items: 1,
     },
   };
+  const CustomLeftArrow = ({ onClick }) => {
+    return (
+      <div className="custom-arrow custom-left-arrow" onClick={onClick}>
+        &#9664;
+      </div>
+    );
+  };
+
+  const CustomRightArrow = ({ onClick }) => {
+    return (
+      <div className="custom-arrow custom-right-arrow" onClick={onClick}>
+        &#9654;
+      </div>
+    );
+  };
 
   return (
     <div className="mainn">
+      <div className="nav">
+        <div className="logo">
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        <Link to="/payment">
+          <img src={Payment} alt="" className="payment" />
+        </Link>
+      </div>
       <div className="main_reviews">
         <div className="first_block_review">
+          <img className="firstflow" src={firstflow} alt="imageflower" />
           <h1>Reviews</h1>
           <div className="stars">
             <ReactStars
@@ -83,81 +159,58 @@ export default function Reviews() {
             <p>(3675)</p>
           </div>
           <div className="review_all">
-            <div className="photo_review">
-              <div className="comments">
-                <div className="user_picture"></div>
-                <div className="circle"></div>
-                <div className="comment_review">
-                  <h3>Klara L</h3>
-                  <h6>1/2/2024</h6>
-                  <p>
-                    Thank you! Cool idea with butterflies, and special thanks to
-                    you for the stickers 🌷🙌
-                  </p>
-                  <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    color2={"#ffd700"}
-                  />
+            <Carousel
+              ref={carouselRef}
+              responsive={responsive}
+              showDots={false}
+              infinite={true}
+              customLeftArrow={<CustomLeftArrow />}
+              customRightArrow={<CustomRightArrow />}
+              arrows={false}
+            >
+              {reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className={`comments ${index === 1 ? "short" : ""}`}
+                >
+                  <div
+                    className="user_picture"
+                    style={{ backgroundImage: `url(${review.image})` }}
+                  ></div>
+                  <div className="comment_review">
+                    <div className="user-initials">{review.initials}</div>
+                    <div className="user-text">
+                      <h3>{review.name}</h3>
+                      <h6>{review.date}</h6>
+                      <p>{review.comment}</p>
+                      <ReactStars
+                        count={5}
+                        value={review.rating}
+                        onChange={ratingChanged}
+                        size={24}
+                        color2={"#ffd700"}
+                      />
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </Carousel>
+            <div className="carousel-arrows">
+              <div onClick={() => carouselRef.current.previous()}>
+                <CustomLeftArrow />
               </div>
-              <div className="comments">
-                <div className="user_picture"></div>
-                <div className="circle"></div>
-                <div className="comment_review">
-                  <h3>Klara L</h3>
-                  <h6>1/2/2024</h6>
-                  <p>
-                    Thank you! Cool idea with butterflies, and special thanks to
-                    you for the stickers 🌷🙌
-                  </p>
-                </div>
-              </div>
-              <div className="comments">
-                <div className="user_picture"></div>
-                <div className="circle"></div>
-                <div className="comment_review">
-                  <h3>Klara L</h3>
-                  <h6>1/2/2024</h6>
-                  <p>
-                    Thank you! Cool idea with butterflies, and special thanks to
-                    you for the stickers 🌷🙌
-                  </p>
-                  <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    color2={"#ffd700"}
-                  />
-                </div>
-              </div>
-              <div className="comments">
-                <div className="user_picture"></div>
-                <div className="circle"></div>
-                <div className="comment_review">
-                  <h3>Klara L</h3>
-                  <h6>1/2/2024</h6>
-                  <p>
-                    Thank you! Cool idea with butterflies, and special thanks to
-                    you for the stickers 🌷🙌
-                  </p>
-                  <ReactStars
-                    count={5}
-                    onChange={ratingChanged}
-                    size={24}
-                    color2={"#ffd700"}
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
               <button className="show_more">Show more reviews</button>
+              <div onClick={() => carouselRef.current.next()}>
+                <CustomRightArrow />
+              </div>
             </div>
           </div>
+
+          <img src={secondflow} alt="secondflowe" className="secondflow" />
         </div>
 
         <div className="video_block_review">
+          <img src={thirdflow} alt="" className="thirdflow" />
           <h1>Great reactions guaranteed!</h1>
           <div className="video">
             <Carousel
@@ -179,25 +232,34 @@ export default function Reviews() {
               ))}
             </Carousel>
             <div>
-              <button className="video-button">Personalize book</button>
+              <Link to="/personalize">
+                <button className="video-button">Personalize book</button>
+              </Link>
             </div>
           </div>
+          <img src={fourthflow} alt="" className="fourthflow" />
         </div>
 
-        <div className="info_us">
+        <div className="info_us_about">
           <div className="book_info">
-            <h1>+1500 books</h1>
-            <h1>+5 countries</h1>
+            <h1>
+              <mark> +1500 books </mark>
+            </h1>
+            <h1>
+              <mark>+5 </mark> countries
+            </h1>
+            <img src={mask} alt="masklogo" className="mask" />
           </div>
           <div className="trusted">
             <h1>
-              We are trusted by more than 1000 parents from different parts of
-              the world
+              We are trusted by more than <mark> 1000 parents </mark> from
+              different <mark> parts of the world</mark>
             </h1>
             <h5>
               Millions of emotions collected <br /> from all over the world{" "}
               <br /> especially for you
             </h5>
+            <img src={circlegreen} alt="" className="green-circle" />
           </div>
         </div>
 
@@ -237,6 +299,7 @@ export default function Reviews() {
           </div>
         </div>
       </div>
+      <Footer style={{ color: "white" }} />
     </div>
   );
 }

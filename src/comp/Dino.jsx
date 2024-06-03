@@ -12,7 +12,18 @@ import lycan from "../images/snapedit_1712140778379 1.png";
 import wolve from "../images/wolve.svg";
 import Footer from "./Footer";
 import bifg from "../images/bifg.svg";
-import { Car, Bot, People, MadeIn, Logo } from "./SvgImages";
+import {
+  Car,
+  Bot,
+  People,
+  MadeIn,
+  Logo,
+  Firstvector,
+  FirstAiVector,
+  SecondAiVector,
+  ThirdAiVector,
+  VectorBottom,
+} from "./SvgImages";
 import ScrollUpDown from "react-top-bottom-scroll";
 import Payment from "../images/online-pay-svgrepo-com.svg";
 import dinofooter from "../images/1939441 1.svg";
@@ -21,6 +32,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import flagUS from "../images/us.png";
 import flagRU from "../images/rus.png";
+import zone from "../images/zone.png";
+import ezera from "../images/ezera.png";
+import bigbranch from "../images/llia.png";
+import smalllia from "../images/smalllia.png";
+import dinofoot from "../images/dinosaur-foot-print-silhouette-free-svg-file-SvgHeart 1@2x.png";
+import secondflow from "../images/12.png";
+import bla from "../images/bla.png";
+import blaa from "../images/blaa.png";
+import momandson from "../images/unsplash_NoRsyXmHGpI.jpg";
 
 export default function Dino() {
   const [open, setOpen] = useState({});
@@ -46,29 +66,6 @@ export default function Dino() {
     setIsModalOpen(false);
     console.log(isModalOpen);
   };
-
-  const infocompany = [
-    {
-      id: 1,
-      title: "dino.home.faq.what-age",
-      content: "dino.home.faq.what-age-answer",
-    },
-    {
-      id: 2,
-      title: "dino.home.faq.how-personalize",
-      content: "dino.home.faq.how-personalize-answer",
-    },
-    {
-      id: 3,
-      title: "dino.home.faq.how-long",
-      content: "dino.home.faq.how-long-answer",
-    },
-    {
-      id: 4,
-      title: "dino.home.faq.other-encyclopedia",
-      content: "dino.home.faq.other-encyclopedia-answer",
-    },
-  ];
 
   const toggle = (id) => {
     setOpen((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -252,6 +249,29 @@ export default function Dino() {
     buttonRefs,
   ]);
 
+  const infocompany = [
+    {
+      id: 1,
+      title: `${t(`dino.home.faq.what-age`)}`,
+      content: `${t(`dino.home.faq.what-age-answer`)}`,
+    },
+    {
+      id: 2,
+      title: `${t(`dino.home.faq.how-personalize`)}`,
+      content: `${t("dino.home.faq.how-personalize-answer")}`,
+    },
+    {
+      id: 3,
+      title: `${t("dino.home.faq.how-long")}`,
+      content: `${t("dino.home.faq.how-long-answer")}`,
+    },
+    {
+      id: 4,
+      title: `${t("dino.home.faq.other-encyclopedia")}`,
+      content: `${t("dino.home.faq.other-encyclopedia-answer")}`,
+    },
+  ];
+
   useEffect(() => {
     setTextRefs((refs) =>
       Array(infocompany.length)
@@ -274,6 +294,72 @@ export default function Dino() {
         .map((_, i) => refs[i] || React.createRef())
     );
   }, [infocompany.length]);
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handlePrevClick = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? items.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNextClick = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === items.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handleNextClack = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === caroutext.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePrevClack = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === caroutext.length - 1 ? 0 : prevIndex - 1
+    );
+  };
+
+  useEffect(() => {
+    if (isAnimating) {
+      const timer = setTimeout(() => setIsAnimating(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating]);
+
+  const items = [
+    {
+      image:
+        "https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--914bcfe0-f610-4610-a77e-6ea53c53f630/_330603286208.app.png?preferwebp=true&width=312",
+      title: "Encyclopedia about space",
+      price: "$450.00",
+    },
+    {
+      image:
+        "https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--914bcfe0-f610-4610-a77e-6ea53c53f630/_330603286208.app.png?preferwebp=true&width=312",
+      title: "Encyclopedia about space",
+      price: "$430.00",
+    },
+  ];
+
+  const caroutext = [
+    {
+      images: momandson,
+      text: `${t("dino.home.review.reading-the-dinosaur")}`,
+    },
+    {
+      images:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX7rU8n0wZfn8QWAbKX3noFr2QDc3iOZHxnQ&s",
+      text: `${t("dino.home.review.reading-the-dinosaur")}`,
+    },
+  ];
 
   return (
     <div className="main">
@@ -304,7 +390,10 @@ export default function Dino() {
             <img src={Payment} alt="" className="payment" />
           </Link>
         </div>
+
         <div className="discover">
+          <img src={zone} alt="" className="zone" />
+          <img src={ezera} alt="" className="ezera" />
           <div className="main_info">
             <CSSTransition
               in={hasAnimated.branch}
@@ -313,6 +402,7 @@ export default function Dino() {
             >
               <img ref={branchRef} src={branchmain} alt="" className="branch" />
             </CSSTransition>
+
             <div className="info_disco">
               <div className="instruction">
                 <CSSTransition
@@ -358,10 +448,13 @@ export default function Dino() {
                   timeout={1000}
                   classNames="fade"
                 >
-                  <div ref={instructionRefs[3]}>
+                  <div ref={instructionRefs[3]} className="click-button">
                     <h4>{t("dino.home.click-button")}</h4>
                   </div>
                 </CSSTransition>
+                <div className="vector">
+                  <Firstvector />
+                </div>
               </div>
             </div>
           </div>
@@ -400,9 +493,17 @@ export default function Dino() {
         <img ref={dinoRef} src={smalldino} alt="" className="dino" />
       </CSSTransition>
 
-      <div className="road"></div>
+      <div className="road">
+        <div className="vector-bottom">
+          <VectorBottom />
+        </div>
+        <div className="road-button">
+          <button className="roadd-button">{t("dino.home.personalize")}</button>
+        </div>
+      </div>
 
       <div className="demo">
+        <img src={bigbranch} alt="" className="bigbranch-road" />
         <CSSTransition
           in={hasAnimated.finger}
           timeout={1000}
@@ -423,6 +524,21 @@ export default function Dino() {
             </div>
           </CSSTransition>
           <Modal isOpen={isModalOpen} onClose={closeModal} />
+          <div className="demo-button">
+            <button className="play-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="white"
+                width="18px"
+                height="18px"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M10 8.64v6.72L15.27 12 10 8.64M8 5v14l11-7L8 5z" />
+              </svg>
+            </button>
+            <span className="demo-text">Demo...</span>
+          </div>
         </div>
       </div>
       <div className="provide">
@@ -491,20 +607,51 @@ export default function Dino() {
             </CSSTransition>
           </div>
         </div>
+        <img src={smalllia} alt="" className="smalllia" />
+        <img src={dinofoot} alt="" className="dinofoot" />
       </div>
 
       <div className="carousell">
         <div className="carou_main">
-          <div className="caro_img"></div>
-          <div className="caro_information">
-            {t("dino.home.review.reading-the-dinosaur")}
-          </div>
+          {caroutext.map((item, index) => (
+            <div
+              className={`carousels-slide ${
+                index === currentIndex ? "active-slide" : ""
+              } ${isAnimating ? "animating" : ""}`}
+            >
+              <div className="carrrr">
+                <div className="caro_img">
+                  <img
+                    src={item.images}
+                    alt={item.text}
+                    className="image_carousel"
+                  />
+                </div>
+                <div className="carou_information_button">
+                  <button
+                    className="carousel-nav-button prev"
+                    onClick={handlePrevClack}
+                  >
+                    &lt;
+                  </button>
+                  <div className="caro_information">{item.text} </div>
+                  <button
+                    className="carousel-nav-button next"
+                    onClick={handleNextClack}
+                  >
+                    &gt;
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
         <div className="carou_info">
           <h4>{t("dino.home.review.kid-friendly")}</h4>
           <h1>MyStory</h1>
           <h2>{t("dino.home.review.drop-comment")}</h2>
         </div>
+        <img src={secondflow} alt="" className="second-flow" />
       </div>
 
       <div className="child_dino">
@@ -586,11 +733,19 @@ export default function Dino() {
           <div className="fffblock"></div>
           <div className="swapimgexample">
             <div className="swapfirstblock">
-              <div className="exampleimg"></div>
-              <div className="exampleaitext">
-                <h2>{t("dino.home.ai-face-swap")}</h2>
+              <div className="exampleimg">
+                <div className="firstaivector">
+                  <FirstAiVector />
+                </div>
               </div>
-              <div className="boysswapped"></div>
+              {/* <div className="exampleaitext">
+                <h2>{t("dino.home.ai-face-swap")}</h2>
+              </div> */}
+              <div className="boysswapped">
+                <div className="secondaivector">
+                  <SecondAiVector />
+                </div>
+              </div>
             </div>
             <div className="bookexample">
               <div className="book"></div>
@@ -604,12 +759,21 @@ export default function Dino() {
                     <button>{t("dino.home.personalize-book")}</button>
                   </div>
                 </CSSTransition>
-                <h5>{t("dino.home.click-now")}</h5>
+                <div className="click_now">
+                  <h5>{t("dino.home.click-now")}</h5>
+                  <div className="thirdaivector">
+                    <ThirdAiVector />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="swapbranch"></div>
+        <div className="swapbranch">
+          <img src={bla} alt="" className="firstswapbranch" />
+          <img src={blaa} alt="" className="firstswapbranch" />
+          <img src={secondflow} alt="" className="firstswapbranch" />
+        </div>
       </div>
 
       <h1 className="products">{t("dino.home.other-products")}</h1>
@@ -622,15 +786,39 @@ export default function Dino() {
         >
           <img ref={bifgRef} src={bifg} alt="" className="bifg" />
         </CSSTransition>
-        <div className="productinfo">
-          <div className="productphoto"></div>
-          <div className="productency">
-            <h2>{t("dino.home.subscribe-for-updates")}</h2>
-            <div className="productprice">
-              <p>$450.00</p>
+        <div className="carouse-space">
+          <button
+            className="carousel-nav-button prev"
+            onClick={handlePrevClick}
+          >
+            &lt;
+          </button>
+          <div className="custom-carousel">
+            <div className="carousel-content-container">
+              {items.map((item, index) => (
+                <div
+                  key={index}
+                  className={`carousel-slide ${
+                    index === currentIndex ? "active-slide" : ""
+                  } ${isAnimating ? "animating" : ""}`}
+                >
+                  <img src={item.image} alt={item.title} />
+                  <div className="carousel-item-details">
+                    <h2>{item.title}</h2>
+                    <p>{item.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+          <button
+            className="carousel-nav-button next"
+            onClick={handleNextClick}
+          >
+            &gt;
+          </button>
         </div>
+
         <div className="subscribe">
           <h2>{t("dino.home.space-encyclopedia")}</h2>
           <div className="sub_form">
@@ -645,8 +833,8 @@ export default function Dino() {
               timeout={1000}
               classNames="fade"
             >
-              <div ref={buttonRefs[4]}>
-                <button type="submit">{t("dino.home.send")}</button>
+              <div className="button_ref" ref={buttonRefs[4]}>
+                <button type="submit"></button>
               </div>
             </CSSTransition>
           </div>

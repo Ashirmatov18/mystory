@@ -7,16 +7,19 @@ import inst from "../images/instagram(3).svg";
 import dinofooter from "../images/1939441 1.svg";
 import sakura from "../images/pngwing 12.svg";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer(props) {
   const { t } = useTranslation();
 
   return (
     <>
-      <div className="footer_main">
+      <div className="footer_main" {...props}>
         <div className="footer_first">
           <div>
-            <Logo />
+            <Link to="/">
+              <Logo />
+            </Link>
           </div>
           <div>
             <p>
@@ -55,9 +58,13 @@ export default function Footer() {
 
       <div className="footer_mobile">
         <div>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
         </div>
-        <h2>{t("dino.home.footer.home")}</h2>
+        <Link to="/">
+          <h2>{t("dino.home.footer.home")}</h2>
+        </Link>
       </div>
     </>
   );

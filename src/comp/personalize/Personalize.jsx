@@ -4,17 +4,22 @@ import "../../App.css";
 import { getBookPageLinks, getBookText } from "../../booklinks";
 import Footer from "../Footer";
 import { Logo } from "../SvgImages";
-import { Payment } from "../SvgImages";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import loadingGif from "../../images/gif.gif";
+import Payment from "../../images/online-pay-svgrepo-com.svg";
+import imageswap from "../../images/swapp.jpg";
+import swapped from "../../images/swap.jpg";
 
 function Personalize() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const [userName, setUserName] = useState("");
   const [language, setLanguage] = useState("ru");
   const [gender, setGender] = useState("girl");
   const [age, setAge] = useState(6);
   const [hairColor, setHairColor] = useState("blond");
   const [open, setOpen] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
@@ -53,6 +58,11 @@ function Personalize() {
     if (event.target.files && event.target.files[0]) {
       const img = event.target.files[0];
       setSelectedImage(img);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreviewImage(e.target.result);
+      };
+      reader.readAsDataURL(img);
     }
   };
 
@@ -78,11 +88,13 @@ function Personalize() {
     setHairColor(color);
   };
 
-  const handleGenerateBook = () => {
+  const handleGenerateBook = async () => {
     if (!selectedImage || !userName) {
       alert("Please upload an image and enter your name.");
       return;
     }
+
+    setLoading(true);
 
     let ageGroup;
     if (age >= 4 && age <= 7) {
@@ -91,23 +103,65 @@ function Personalize() {
       ageGroup = 10;
     } else if (age >= 12 && age <= 14) {
       ageGroup = 14;
+    } else {
+      alert("Please enter a valid age between 4 and 14.");
+      setLoading(false);
+      return;
     }
+
+    const bookLanguage = language === "en" ? "eng" : "ru";
+    console.log("Gender:", gender);
+    console.log("Age Group:", ageGroup);
+    console.log("Hair Color:", hairColor);
+    console.log("Language:", bookLanguage);
 
     const bookPageLinks = getBookPageLinks(gender, ageGroup, hairColor);
     const bookText = getBookText(gender, language);
 
-    navigate("/swapper", {
-      state: {
-        selectedImage,
-        userName,
-        language,
-        gender,
-        ageGroup,
-        hairColor,
-        bookPageLinks,
-        bookText,
-      },
-    });
+    const formData = new FormData();
+    formData.append("face", selectedImage);
+
+    const bookName = `encyclopedia_dino_${gender}_${ageGroup}_${hairColor}_white_1_${bookLanguage}`;
+    console.log("Book Name:", bookName);
+
+    try {
+      const response = await fetch(
+        `https://v5-v6ovqwi4ya-el.a.run.app/swap?book=${bookName}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response data:", data);
+        const swappedPages = Object.keys(data).map((key) => {
+          const base64Image = data[key];
+          console.log("Base64 Image Data:", base64Image);
+          return `data:image/jpeg;base64,${base64Image}`;
+        });
+        console.log("Swapped Pages:", swappedPages);
+        navigate("/swapper", {
+          state: {
+            swappedPages,
+            userName,
+            language,
+            gender,
+            ageGroup,
+            hairColor,
+            bookPageLinks,
+            bookText,
+          },
+        });
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleButtonClick = () => {
@@ -116,6 +170,11 @@ function Personalize() {
 
   return (
     <div className="main_personalize">
+      {loading && (
+        <div className="loading-overlay">
+          <img src={loadingGif} alt="Loading..." className="loading-gif" />
+        </div>
+      )}
       <div className="nav">
         <div className="logo">
           <Link to="/">
@@ -126,29 +185,44 @@ function Personalize() {
           <img src={Payment} alt="" className="payment" />
         </Link>
       </div>
-      <div class="how-it-works">
-        <h2 class="how-it-works-title">HOW IT WORKS?</h2>
-        <div class="how-it-works-steps">
-          <div class="step">
-            <img src="path_to_your_image1" alt="Step 1" class="step-image" />
-            <div class="step-content">
-              <h3>1. Upload your photo. AI draw your portrait.</h3>
+      <div className="how-it-works">
+        <h2 className="how-it-works-title">HOW IT WORKS?</h2>
+        <div className="how-it-works-steps">
+          <div className="step">
+            <div className="image-upload-container">
+              <img src={imageswap} alt="Child" className="photo" />
+              <div className="upload-box">
+                <p>UPLOAD</p>
+              </div>
+            </div>
+            <div className="step-content">
+              <h3>1. Upload your photo. AI will draw your portrait.</h3>
               <p>
-                Our AI make the best out of any photo! Questions? See our photo
+                Our AI makes the best out of any photo! Questions? See our photo
                 guide.
               </p>
             </div>
           </div>
-          <div class="step">
-            <img src="path_to_your_image2" alt="Step 2" class="step-image" />
-            <div class="step-content">
+          <div className="step">
+            <div className="image-upload-container">
+              <img src={swapped} alt="Child" className="photo" />
+              <div className="upload-box">
+                <p>REVIEW</p>
+              </div>
+            </div>
+            <div className="step-content">
               <h3>2. Preview your artwork. 3 revisions</h3>
               <p>Preview, approve, or ask for edits.</p>
             </div>
           </div>
-          <div class="step">
-            <img src="path_to_your_image3" alt="Step 3" class="step-image" />
-            <div class="step-content">
+          <div className="step">
+            <div className="image-upload-container">
+              <img src={imageswap} alt="Child" className="photo-last" />
+              <div className="upload-box">
+                <p>UPLOAD</p>
+              </div>
+            </div>
+            <div className="step-content">
               <h3>3. We ship it fast & free. Let the fun begin!</h3>
               <p>
                 Get your camera ready for the greatest unboxing reaction. Happy
@@ -159,7 +233,7 @@ function Personalize() {
         </div>
       </div>
 
-      <div className="containerr">
+      <div className="containerrr">
         <div className="upload-container">
           <p className="upload-text">UPLOAD YOUR PHOTO</p>
           <button className="upload-button" onClick={handleButtonClick}>
@@ -172,6 +246,11 @@ function Personalize() {
             accept="image/*"
             onChange={handleImageChange}
           />
+          {previewImage && (
+            <div className="image-preview">
+              <img src={previewImage} alt="Selected" />
+            </div>
+          )}
         </div>
         <input
           type="text"
@@ -211,7 +290,9 @@ function Personalize() {
           <h3>Choose your hair color</h3>
           <div className="hair-color-options">
             <button
-              className="hair-color-button"
+              className={`hair-color-button ${
+                hairColor === "blond" ? "selected" : ""
+              }`}
               onClick={() => handleHairColorChange("blond")}
             >
               <div
@@ -221,7 +302,9 @@ function Personalize() {
               <span>Blond</span>
             </button>
             <button
-              className="hair-color-button"
+              className={`hair-color-button ${
+                hairColor === "brunette" ? "selected" : ""
+              }`}
               onClick={() => handleHairColorChange("brunette")}
             >
               <div
@@ -231,7 +314,9 @@ function Personalize() {
               <span>Brunette</span>
             </button>
             <button
-              className="hair-color-button"
+              className={`hair-color-button ${
+                hairColor === "shaten" ? "selected" : ""
+              }`}
               onClick={() => handleHairColorChange("shaten")}
             >
               <div
@@ -265,7 +350,7 @@ function Personalize() {
           </div>
         </div>
       </div>
-      <Footer style={{ backgroundColor: "black" }} />
+      <Footer style={{ backgroundColor: "black", color: "white" }} />
     </div>
   );
 }

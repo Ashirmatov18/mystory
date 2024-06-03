@@ -1,95 +1,188 @@
 .mainn{
-    background-color: #0E4905;
+    background: linear-gradient(#0E4905  ,#0F2912  );
     /* padding: 1em; */
-    padding-top: 100px;}
+    /* padding-top: 100px; */
+}
+
+
 .main {
   background-color: #0e4905;
   /* padding: 1em; */
+}
+
+.stars{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
 }
 
 .first_block_review {
   border: 1px solid white;
   width: 90%;
   margin: 0 auto;
-  height: 800px;
-  border-radius: 10px;
+  height: auto;
+  border-radius: 30px;
   position: relative;
   text-align: center;
   padding: 10px;
   color: #fff;
 }
 
-.review_all{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 70%;
+.firstflow{
+    position: absolute;
+    left: -90px;
+    top: -170px;
 }
 
-.photo_review{
-    display: flex;
-    justify-content: space-between;
-    height: auto;
-    margin-bottom: 20px;
+.secondflow{
+    position: absolute;
+    right: -50px;
+    bottom: -200px;
 }
 
-.comments{
+.react-multi-carousel-dot-list {
+    display: none !important;
+}
+
+.review_all {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    color: #fff;
+    position: relative;
+  }
+  
+  .comments {
     background-color: #fff;
     color: black;
-    width: 25%;
-    margin-right: 10px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
-    height: 510px;
-}
-
-.comment_review{
-    padding: 20px;
-}
-
-.user_picture{
-    background-image: url('https://storage.googleapis.com/mystory_books/encyclopedia/dino/encyclopedia_dino_boy_10_blond_white_1_eng/1.jpg');
-    height: 420px;
-}
-
-.comments:nth-child(2){
-    /* background-color: red; */
-    height: 440px;
-}
-
-.stars{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    border-bottom: 1px solid #fff;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .comments.short {
+    height: 300px; 
+  }
+  
+  .comment_review {
+    position: relative;
+    text-align: center;
+  }
+  
+  .user_picture {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
     margin-bottom: 10px;
-}
-    .photo_review {
-  display: flex;
-  justify-content: space-between;
-}
-
-.comments {
-  background-color: #fff;
-  color: black;
-  width: 25%;
-  margin-right: 10px;
-}
-
-.comments:nth-child(2) {
-  /* background-color: red; */
-}
-
-.stars {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  border-bottom: 1px solid #fff;
-  margin-bottom: 50px;
-}
-
-.show_more {
-  margin: 10px auto;
+  }
+  
+  .comments.short .user_picture {
+    height: 150px; 
+  }
+  
+  .user-text {
+    /* padding: 20px; */
+  }
+  
+  .user-text h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  
+  .user-text h6 {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .user-text p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .user-initials {
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -20px;
+  }
+  
+  .user-initials::after {
+    content: '✓';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: yellow;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+  }
+  
+  .carousel-arrows {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .show_more {
+    height: 40px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+  
+  .custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .custom-left-arrow {
+    left: -50px;
+  }
+  
+  .custom-right-arrow {
+    right: -50px;
+  }
+  .show_more {
+  margin: 40px auto;
   height: 40px;
   background: transparent;
   border: 1px solid white;
@@ -103,32 +196,66 @@
   border: 1px solid white;
   width: 90%;
   margin: 100px auto;
-  height: 800px;
+  height: 100%;
   border-radius: 10px;
   position: relative;
   text-align: center;
   padding: 10px;
   color: #fff;
+  margin-top: 250px;
+  position: relative;
 }
 
-.info_us {
+.thirdflow{
+    position: absolute;
+    top: -350px;
+    left: -100px;
+}
+
+mark{
+    color: #61FF00;
+    background-color: transparent;
+}
+
+.info_us_about {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 400px;
+  margin-top: 150px;
+}
+
+.info_us_about h1{
+    margin-top: 0;
 }
 
 .book_info {
   background-color: #0d691c;
   width: 40%;
   padding: 2em;
+  color: #fff;
+}
+
+.book_info h1{
+    font-size: 40px;
+}
+
+.green-circle{
+    height: 70%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .trusted {
   background-color: #333030;
   padding: 2em;
+  position: relative;
 }
-
+.trusted h1{
+    color: #fff;
+    font-size: 50px;
+}
 .trusted h5 {
   color: #c6c4c4;
   font-size: 25px;
@@ -137,9 +264,12 @@
 
 .deliver_info {
   text-align: center;
+  color: #fff;
+  margin-top: 70px;
 }
 .deliver_info h2 {
   margin-bottom: 90px;
+  /* border-bottom: 1px solid white; */
 }
 
 .info_about_creation {
@@ -147,7 +277,7 @@
   justify-content: center;
   /* width: 40%; */
   align-items: center;
-  margin: 20px auto;
+  margin: 20px 20px 0 auto;
 }
 
 .egg {
@@ -194,12 +324,24 @@
     color:#fff;
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 50px;
+}
 
+.fourthflow{
+    position: absolute;
+    right: 0;
+    bottom: -100px;
+}
+
+
+.mask{
+   height: 50%;    
 }
 
 .react-multi-carousel-list  {
     height: 500px;
 }
+
 
 .carousel-item {
     position: relative;
@@ -229,4 +371,147 @@
   width: 30%;
   text-align: start;
   font-size: 30px;
+}
+
+
+@media only screen and (max-width: 992px) {
+
+  .stars{
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .book_info h1{
+    font-size: xx-large;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .custom-left-arrow{
+    left: auto;
+  }
+  .custom-right-arrow{
+    right: auto;
+  }
+  .secondflow{
+    bottom: -250px;
+    right: 0;
+  }
+  /* .review_all{
+    margin: 0;
+  } */
+  .green-circle{
+    height: 40%;
+  }
+  .comments.short{
+    height: auto;
+  }
+  .trusted h1{
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .secondflow{
+    height: 20%;
+    bottom: -100px;
+  }
+  .video-button{
+    font-size: 20px;
+  }
+  .trusted h1{
+    font-size: 20px;
+  }
+  .custom-arrow{
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 560px){
+  .info_us_about{
+    flex-wrap: wrap;
+  }
+  .book_info{
+    width: 100%;
+    text-align: center;
+    height: 280px;
+
+  }
+  .mask{
+    height: 50%;
+  }
+  .trusted h5{
+    font-size: auto;
+  }
+  .green-circle{
+    height: 50%;
+  }
+  .deliver_info{
+    margin-top: 370px;
+  }
+  .egg{
+    height: 100px;
+    width: 76px;
+  }
+  .info_about_creation h3{
+    font-size: 20px;
+  }
+}
+
+@media only screen  and (max-width: 450px) {
+  .green-circle{
+    height: 40%;
+  }
+  .deliver_info h2{
+    margin-bottom: 0;
+  }
+  .deliver_info{
+    margin-top: 410px;
+  }
+  .info_about_creation h3{
+    width: 70%;;
+  }
+  .info_about_creation{
+    justify-content: space-between;
+    width: 80%;
+  }
+  .egg p{
+    font-size: medium;
+  }
+  .user-text p{
+    font-size: 10px;
+  }
+  .user_picture{
+    height: 200px;
+  }
+  .react-multi-carousel-list{
+    height: auto;
+  }
+  .carousel-arrows{
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width:440px) {
+  .video_block_review {
+    margin-top: 100px;  
+  }
+  .thirdflow{
+    height: 50%;
+    top: -170px;
+  }
+  .video-button{
+    width: 80%;
+  }
+  .book_info{
+    height: 188px;
+  }
+  .trusted h5{
+    width: 100%;
+    font-size: smaller;
+  }
+  .deliver_info{
+    margin-top: 120px;
+  }
 }
