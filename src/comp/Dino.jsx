@@ -41,7 +41,7 @@ import secondflow from "../images/12.png";
 import bla from "../images/bla.png";
 import blaa from "../images/blaa.png";
 import momandson from "../images/unsplash_NoRsyXmHGpI.jpg";
-
+import cosmophoto from "../images/Rose Gold Feminine Calligraphy Monogram Logo(23).jpg";
 export default function Dino() {
   const [open, setOpen] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -336,8 +336,7 @@ export default function Dino() {
 
   const items = [
     {
-      image:
-        "https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--914bcfe0-f610-4610-a77e-6ea53c53f630/_330603286208.app.png?preferwebp=true&width=312",
+      image: cosmophoto,
       title: "Encyclopedia about space",
       price: "$450.00",
     },
