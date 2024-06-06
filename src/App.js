@@ -12,11 +12,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dino />} />
+          <Route path="/" element={<Personalize />} />
           <Route path="/swapper" element={<ImageUploader />} />
           <Route path="/payment" element={<StripeCheckout />} />
           <Route path="/review" element={<Reviews />} />
-          <Route path="/personalize" element={<Personalize />} />
+          {/* <Route path="/personalize" element={<Personalize />} /> */}
           <Route path="/payment" element={<Checkout />} />
         </Routes>
       </BrowserRouter>

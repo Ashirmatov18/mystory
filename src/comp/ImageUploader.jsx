@@ -177,16 +177,19 @@ function ImageUploader() {
             </select>
           </div>
           <Link to="/payment">
-            {" "}
             <img src={Payment} alt="" className="payment" />
           </Link>
         </div>
 
         <div className="discover">
           <div className="jungle-overlay"></div>
-
-          <img src={zone} alt="" className="zone" />
-          <img src={ezera} alt="" className="ezera" />
+          {pages.length > 0 && (
+            <>
+              <div className="preview-image-swap">
+                <img src={pages[0]} alt="Page 1" />
+              </div>
+            </>
+          )}
           <div className="main_info"></div>
         </div>
       </div>
@@ -296,7 +299,7 @@ function ImageUploader() {
                     <img src={pages[7]} alt="Page 9" />
                   </div>
                   <div className="book-page full-page-image">
-                    <img src={pages[10]} alt="Page 10" />
+                    <img src={pages[9]} alt="Page 10" />
                   </div>
                 </div>
               </section>
@@ -317,7 +320,7 @@ function ImageUploader() {
                     </div>
                   </div>
                   <div className="book-page full-page-image">
-                    <img src={pages[9]} alt="Page 12" />
+                    <img src={pages[10]} alt="Page 12" />
                   </div>
                 </div>
               </section>

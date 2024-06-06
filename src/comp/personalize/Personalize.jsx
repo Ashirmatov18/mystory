@@ -173,6 +173,15 @@ function Personalize() {
       {loading && (
         <div className="loading-overlay">
           <img src={loadingGif} alt="Loading..." className="loading-gif" />
+          <div className="loading">
+            <p>l</p>
+            <p>o</p>
+            <p>a</p>
+            <p>d</p>
+            <p>i</p>
+            <p>n</p>
+            <p>g</p>
+          </div>
         </div>
       )}
       <div className="nav">
@@ -282,7 +291,7 @@ function Personalize() {
         >
           {Array.from({ length: 11 }, (_, i) => i + 4).map((value) => (
             <option key={value} value={value}>
-              {value}
+              {value} years old
             </option>
           ))}
         </select>
